@@ -2299,8 +2299,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             JOptionPane optionPane = new JOptionPane();
             optionPane.setMessage("AccPbFRET - an ImageJ plugin for analysis of acceptor photobleaching FRET images\n" +
                                   "Homepage: http://biophys.med.unideb.hu/accpbfret/\n" +
-			                      "Written by: János Roszik (janosr@med.unideb.hu), János Szöllõsi (szollo@med.unideb.hu),\n" +
-                                  "and György Vereb (vereb@med.unideb.hu)\n" +
+			                      "Written by: JÃ¡nos Roszik (janosr@med.unideb.hu), JÃ¡nos SzÃ¶llÅ‘si (szollo@med.unideb.hu),\n" +
+                                  "and GyÃ¶rgy Vereb (vereb@med.unideb.hu)\n" +
                                   "Version: " + version + " (" + lastModified + ")\n" +
                                   "The plugin was tested with ImageJ version " + imageJVersion + " using Java " + javaVersion + ".\n\n" +
                                   "If you are using the plugin, please cite the following paper:\n" +
