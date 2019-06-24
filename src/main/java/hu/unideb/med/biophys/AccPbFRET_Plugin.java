@@ -22,7 +22,6 @@ import ij.io.*;
 import ij.measure.*;
 import ij.plugin.*;
 import ij.plugin.filter.*;
-import ij.plugin.frame.*;
 import ij.process.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
