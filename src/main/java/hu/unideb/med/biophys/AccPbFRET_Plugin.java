@@ -50,11 +50,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -102,7 +99,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private HelpWindow helpWindow;
     private JMenu fileMenu, imageMenu, correctionMenu, helpMenu;
     private JMenuItem openMenuItem, saveTiffMenuItem, saveBmpMenuItem, splitMenuItem, applyMaskMenuItem, bleachingMaskMenuItem, calculateImgRatioMenuItem, thresholdMenuItem, shiftMenuItem;
-    private JMenuItem lutFireMenuItem, lutSpectrumMenuItem, histogramMenuItem, convertMenuItem, exitMenuItem, helpMenuItem, aboutMenuItem, checkVersionMenuItem;
+    private JMenuItem lutFireMenuItem, lutSpectrumMenuItem, histogramMenuItem, convertMenuItem, exitMenuItem, helpMenuItem, aboutMenuItem;
     private JMenuItem saveMessagesMenuItem, clearMessagesMenuItem;
     private JMenuItem semiAutomaticMenuItem, resetImagesMenuItem;
     private JCheckBoxMenuItem donorBlCorrMenuItem, accCrossTalkCorrMenuItem, accPhotoprCorrMenuItem, partialBlCorrMenuItem;
@@ -257,10 +254,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         helpMenuItem.setActionCommand("help");
         helpMenuItem.addActionListener(this);
         helpMenu.add(helpMenuItem);
-        checkVersionMenuItem = new JMenuItem("Check for latest version");
-        checkVersionMenuItem.setActionCommand("checkVersion");
-        checkVersionMenuItem.addActionListener(this);
-        helpMenu.add(checkVersionMenuItem);
         debugMenuItem = new JCheckBoxMenuItem("Debug mode");
         debugMenuItem.setSelected(false);
         debugMenuItem.setActionCommand("debugmode");
@@ -2304,43 +2297,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 }
                 helpWindow = new HelpWindow(this);
                 helpWindow.setVisible(true);
-            } else if (e.getActionCommand().equals("checkVersion")) {
-                InputStream is = null;
-                try {
-                    URL url = new URL("http://biophys.med.unideb.hu/accpbfret/version.txt");
-                    byte[] buffer = new byte[4];
-                    URLConnection urlCon = url.openConnection();
-                    is = urlCon.getInputStream();
-                    String ver = "";
-                    while (is.read(buffer) != -1) {
-                        ver += new String(buffer);
-                    }
-                    float verf = Float.parseFloat(ver);
-                    if (verf > version) {
-                        int choice = JOptionPane.showConfirmDialog(this, "There is a newer version on the AccPbFRET homepage.\n"
-                                + "Your version: " + version + "\n"
-                                + "New version: " + ver + "\n"
-                                + "You can download it from: http://biophys.med.unideb.hu/accpbfret/ \n"
-                                + "Do you want to download it now?", "Checking for latest version", JOptionPane.YES_NO_OPTION);
-                        if (choice == JOptionPane.YES_OPTION) {
-                            IJ.runPlugIn("ij.plugin.BrowserLauncher", "http://biophys.med.unideb.hu/accpbfret/");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "There is no newer version on the AccPbFRET homepage.\n"
-                                + "Your version: " + version + "\n"
-                                + "Version on the server: " + ver, "Checking for latest version", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } catch (Exception e1) {
-                    logException(e1.toString(), e1);
-                } finally {
-                    try {
-                        if (is != null) {
-                            is.close();
-                        }
-                    } catch (Exception e2) {
-                        logException(e2.getMessage(), e2);
-                    }
-                }
             } else if (e.getActionCommand().equals("about")) {
                 JOptionPane optionPane = new JOptionPane();
                 optionPane.setMessage("AccPbFRET - an ImageJ plugin for analysis of acceptor photobleaching FRET images\n"
