@@ -113,7 +113,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private JButton smoothDonorBeforeButton, smoothDonorAfterButton, smoothAcceptorBeforeButton, smoothAcceptorAfterButton;
     private JButton openImageButton, clearABButton, clearAAButton, resetDBButton, resetDAButton, resetABButton, resetAAButton;
     private JButton copyRoiButton;
-    private JTextField radiusFieldDB, radiusFieldDA, radiusFieldAB, radiusFieldAA;
+    private JTextField sigmaFieldDB, sigmaFieldDA, sigmaFieldAB, sigmaFieldAA;
     private JTextField donorBlCorrField, accCrossTalkCorrField, accPhotoprCorrField, partialBlCorrField;
     private JButton registerButton, createButton, measureButton, nextButton, closeImagesButton;
     public JButton calculateDBCorrButton, calculateAccCTCorrButton, calculateAccPPCorrButton, calculatePartialBlCorrButton;
@@ -420,13 +420,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridwidth = 9;
         gc.gridx = 0;
         gc.gridy = 7;
-        container.add(new JLabel("Step 3a (optional): blur donor before image (Gaussian), radius in pixels:"), gc);
+        container.add(new JLabel("Step 3a (optional): blur donor before image (Gaussian), sigma (radius):"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
         gc.gridy = 7;
-        radiusFieldDB = new JTextField("2", 4);
-        radiusFieldDB.setHorizontalAlignment(JTextField.RIGHT);
-        container.add(radiusFieldDB, gc);
+        sigmaFieldDB = new JTextField("0.8", 4);
+        sigmaFieldDB.setHorizontalAlignment(JTextField.RIGHT);
+        container.add(sigmaFieldDB, gc);
         smoothDonorBeforeButton = new JButton("Blur");
         smoothDonorBeforeButton.addActionListener(this);
         smoothDonorBeforeButton.setActionCommand("smoothDBefore");
@@ -438,13 +438,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridwidth = 9;
         gc.gridx = 0;
         gc.gridy = 8;
-        container.add(new JLabel("Step 3b (optional): blur donor after image (Gaussian), radius in pixels:"), gc);
+        container.add(new JLabel("Step 3b (optional): blur donor after image (Gaussian), sigma (radius):"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
         gc.gridy = 8;
-        radiusFieldDA = new JTextField("2", 4);
-        radiusFieldDA.setHorizontalAlignment(JTextField.RIGHT);
-        container.add(radiusFieldDA, gc);
+        sigmaFieldDA = new JTextField("0.8", 4);
+        sigmaFieldDA.setHorizontalAlignment(JTextField.RIGHT);
+        container.add(sigmaFieldDA, gc);
         smoothDonorAfterButton = new JButton("Blur");
         smoothDonorAfterButton.addActionListener(this);
         smoothDonorAfterButton.setActionCommand("smoothDAfter");
@@ -456,13 +456,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridwidth = 9;
         gc.gridx = 0;
         gc.gridy = 9;
-        container.add(new JLabel("Step 3c (optional): blur acceptor before image (Gaussian), radius in pixels:"), gc);
+        container.add(new JLabel("Step 3c (optional): blur acceptor before image (Gaussian), sigma (radius):"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
         gc.gridy = 9;
-        radiusFieldAB = new JTextField("2", 4);
-        radiusFieldAB.setHorizontalAlignment(JTextField.RIGHT);
-        container.add(radiusFieldAB, gc);
+        sigmaFieldAB = new JTextField("0.8", 4);
+        sigmaFieldAB.setHorizontalAlignment(JTextField.RIGHT);
+        container.add(sigmaFieldAB, gc);
         smoothAcceptorBeforeButton = new JButton("Blur");
         smoothAcceptorBeforeButton.addActionListener(this);
         smoothAcceptorBeforeButton.setActionCommand("smoothABefore");
@@ -474,13 +474,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridwidth = 9;
         gc.gridx = 0;
         gc.gridy = 10;
-        container.add(new JLabel("Step 3d (optional): blur acceptor after image (Gaussian), radius in pixels:"), gc);
+        container.add(new JLabel("Step 3d (optional): blur acceptor after image (Gaussian), sigma (radius):"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
         gc.gridy = 10;
-        radiusFieldAA = new JTextField("2", 4);
-        radiusFieldAA.setHorizontalAlignment(JTextField.RIGHT);
-        container.add(radiusFieldAA, gc);
+        sigmaFieldAA = new JTextField("0.8", 4);
+        sigmaFieldAA.setHorizontalAlignment(JTextField.RIGHT);
+        container.add(sigmaFieldAA, gc);
         smoothAcceptorAfterButton = new JButton("Blur");
         smoothAcceptorAfterButton.addActionListener(this);
         smoothAcceptorAfterButton.setActionCommand("smoothAAfter");
@@ -1497,21 +1497,19 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     logError("No image is set as donor before bleaching.");
                     return;
                 } else {
-                    if (radiusFieldDB.getText().trim().equals("")) {
-                        logError("Radius has to be given for Gaussian blur.");
+                    if (sigmaFieldDB.getText().trim().equals("")) {
+                        logError("Sigma (radius) has to be given for Gaussian blur.");
                         return;
                     } else {
-                        double radius = 0;
+                        double sigma = 0;
                         try {
-                            radius = Double.parseDouble(radiusFieldDB.getText().trim());
+                            sigma = Double.parseDouble(sigmaFieldDB.getText().trim());
                         } catch (Exception ex) {
-                            logError("Radius has to be given for Gaussian blur.");
+                            logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         }
                         GaussianBlur gb = new GaussianBlur();
-                        if (!gb.blur(donorBefore.getProcessor(), radius)) {
-                            return;
-                        }
+                        gb.blurGaussian(donorBefore.getProcessor(), sigma, sigma, 0.01);
                         donorBefore.updateAndDraw();
                         smoothDonorBeforeButton.setBackground(greenColor);
                         log("Gaussian blurred donor before bleaching.");
@@ -1522,21 +1520,19 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     logError("No image is set as donor after bleaching.");
                     return;
                 } else {
-                    if (radiusFieldDA.getText().trim().equals("")) {
-                        logError("Radius has to be given for Gaussian blur.");
+                    if (sigmaFieldDA.getText().trim().equals("")) {
+                        logError("Sigma (radius) has to be given for Gaussian blur.");
                         return;
                     } else {
-                        double radius = 0;
+                        double sigma = 0;
                         try {
-                            radius = Double.parseDouble(radiusFieldDA.getText().trim());
+                            sigma = Double.parseDouble(sigmaFieldDA.getText().trim());
                         } catch (Exception ex) {
-                            logError("Radius has to be given for Gaussian blur.");
+                            logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         }
                         GaussianBlur gb = new GaussianBlur();
-                        if (!gb.blur(donorAfter.getProcessor(), radius)) {
-                            return;
-                        }
+                        gb.blurGaussian(donorAfter.getProcessor(), sigma, sigma, 0.01);
                         donorAfter.updateAndDraw();
                         smoothDonorAfterButton.setBackground(greenColor);
                         log("Gaussian blurred donor after bleaching.");
@@ -1547,21 +1543,19 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     logError("No image is set as acceptor before bleaching.");
                     return;
                 } else {
-                    if (radiusFieldAB.getText().trim().equals("")) {
-                        logError("Radius has to be given for Gaussian blur.");
+                    if (sigmaFieldAB.getText().trim().equals("")) {
+                        logError("Sigma (radius) has to be given for Gaussian blur.");
                         return;
                     } else {
-                        double radius = 0;
+                        double sigma = 0;
                         try {
-                            radius = Double.parseDouble(radiusFieldAB.getText().trim());
+                            sigma = Double.parseDouble(sigmaFieldAB.getText().trim());
                         } catch (Exception ex) {
-                            logError("Radius has to be given for Gaussian blur.");
+                            logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         }
                         GaussianBlur gb = new GaussianBlur();
-                        if (!gb.blur(acceptorBefore.getProcessor(), radius)) {
-                            return;
-                        }
+                        gb.blurGaussian(acceptorBefore.getProcessor(), sigma, sigma, 0.01);
                         acceptorBefore.updateAndDraw();
                         smoothAcceptorBeforeButton.setBackground(greenColor);
                         log("Gaussian blurred acceptor before bleaching.");
@@ -1572,21 +1566,19 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     logError("No image is set as acceptor after bleaching.");
                     return;
                 } else {
-                    if (radiusFieldAB.getText().trim().equals("")) {
-                        logError("Radius has to be given for Gaussian blur.");
+                    if (sigmaFieldAB.getText().trim().equals("")) {
+                        logError("Sigma (radius) has to be given for Gaussian blur.");
                         return;
                     } else {
-                        double radius = 0;
+                        double sigma = 0;
                         try {
-                            radius = Double.parseDouble(radiusFieldAB.getText().trim());
+                            sigma = Double.parseDouble(sigmaFieldAB.getText().trim());
                         } catch (Exception ex) {
-                            logError("Radius has to be given for Gaussian blur.");
+                            logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         }
                         GaussianBlur gb = new GaussianBlur();
-                        if (!gb.blur(acceptorAfter.getProcessor(), radius)) {
-                            return;
-                        }
+                        gb.blurGaussian(acceptorAfter.getProcessor(), sigma, sigma, 0.01);
                         acceptorAfter.updateAndDraw();
                         smoothAcceptorAfterButton.setBackground(greenColor);
                         log("Gaussian blurred acceptor after bleaching.");
