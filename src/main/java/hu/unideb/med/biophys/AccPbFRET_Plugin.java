@@ -425,7 +425,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridx = 9;
         gc.gridy = 7;
         gc.insets = new Insets(0,0,0,2);
-        copyRoiButton = new JButton("Copy");
+        copyRoiButton = new JButton("Copy ROI");
         copyRoiButton.setToolTipText("Sets the same ROI for the donor after and acceptor images.");
         copyRoiButton.setMargin(new Insets(0,0,0,0));
         copyRoiButton.setFont(new Font("Helvetica", Font.BOLD, 10));
