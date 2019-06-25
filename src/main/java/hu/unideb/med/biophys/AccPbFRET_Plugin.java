@@ -2009,7 +2009,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                                 }
 
                                 for (int i = 0; i < ipDAP.length; i++) {
-                                    ipDAP[i] = (float) 1 - (ipDBP[i] / ipDAP[i]);
+                                    ipDAP[i] = 1 - (ipDBP[i] / ipDAP[i]);
                                 }
                             } else {
                                 if (accCrossTalkCorrMenuItem.isSelected()) {
@@ -2025,7 +2025,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                                 for (int i = 0; i < ipDBP.length; i++) {
                                     if (accCrossTalkCorrMenuItem.isSelected() || accPhotoprCorrMenuItem.isSelected()) {
                                         if (!Float.isNaN(ipDBP[i]) && !Float.isNaN(ipDAP[i]) && !Float.isNaN(ipABP[i])) {
-                                            ipDAP[i] = (float) ((double) donorBlCorr * ((double) ipDAP[i] - ((double) partialBlCorr * (double) acceptorCTCorr + (double) acceptorPPCorr * ((double) 1 - (double) partialBlCorr)) * (double) ipABP[i]) - (double) partialBlCorr * (double) ipDBP[i]);
+                                            ipDAP[i] = (float) (donorBlCorr * (ipDAP[i] - ((double) partialBlCorr * (double) acceptorCTCorr + acceptorPPCorr * ((double) 1 - (double) partialBlCorr)) * ipABP[i]) - (double) partialBlCorr * (double) ipDBP[i]);
                                         } else {
                                             ipDAP[i] = Float.NaN;
                                         }
@@ -2039,7 +2039,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                                 }
 
                                 for (int i = 0; i < ipDAP.length; i++) {
-                                    ipDAP[i] = (float) ((double) 1 - (((double) 1 - (double) partialBlCorr) * (double) ipDBP[i] / (double) ipDAP[i]));
+                                    ipDAP[i] = (float) (1 - (((double) 1 - (double) partialBlCorr) * ipDBP[i] / ipDAP[i]));
                                 }
                             }
 
@@ -2151,9 +2151,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                                 isABMean = ImageStatistics.getStatistics(acceptorBefore.getProcessor(), Measurements.MEAN, null);
                                 resultsTable.addValue("Mean (AB)", (float) isABMean.mean);
                             } else {
-                                resultsTable.addValue("Min (AB)", (float) 0);
-                                resultsTable.addValue("Max (AB)", (float) 0);
-                                resultsTable.addValue("Mean (AB)", (float) 0);
+                                resultsTable.addValue("Min (AB)", 0);
+                                resultsTable.addValue("Max (AB)", 0);
+                                resultsTable.addValue("Mean (AB)", 0);
                             }
                             analyzer.displayResults();
                             analyzer.updateHeadings();
@@ -2251,9 +2251,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         isABMean = ImageStatistics.getStatistics(acceptorBefore.getProcessor(), Measurements.MEAN, null);
                         resultsTable.addValue("Mean (AB)", (float) isABMean.mean);
                     } else {
-                        resultsTable.addValue("Min (AB)", (float) 0);
-                        resultsTable.addValue("Max (AB)", (float) 0);
-                        resultsTable.addValue("Mean (AB)", (float) 0);
+                        resultsTable.addValue("Min (AB)", 0);
+                        resultsTable.addValue("Max (AB)", 0);
+                        resultsTable.addValue("Mean (AB)", 0);
                     }
                     analyzer.displayResults();
                     analyzer.updateHeadings();
