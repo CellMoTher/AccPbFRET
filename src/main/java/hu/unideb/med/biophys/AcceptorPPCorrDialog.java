@@ -189,6 +189,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
         getContentPane().add(panel);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         try {
             switch (e.getActionCommand()) {

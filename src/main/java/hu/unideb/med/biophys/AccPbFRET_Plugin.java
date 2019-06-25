@@ -915,6 +915,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         container.add(logScrollPane, gc);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         try {
             switch (e.getActionCommand()) {
@@ -2592,25 +2593,32 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
     }
 
+    @Override
     public void windowClosing(WindowEvent e) {
         exit();
     }
 
+    @Override
     public void windowActivated(WindowEvent e) {
     }
 
+    @Override
     public void windowClosed(WindowEvent e) {
     }
 
+    @Override
     public void windowDeactivated(WindowEvent e) {
     }
 
+    @Override
     public void windowDeiconified(WindowEvent e) {
     }
 
+    @Override
     public void windowIconified(WindowEvent e) {
     }
 
+    @Override
     public void windowOpened(WindowEvent e) {
     }
 
