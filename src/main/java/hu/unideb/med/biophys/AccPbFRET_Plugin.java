@@ -1512,7 +1512,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         gb.blurGaussian(donorBefore.getProcessor(), sigma, sigma, 0.01);
                         donorBefore.updateAndDraw();
                         smoothDonorBeforeButton.setBackground(greenColor);
-                        log("Gaussian blurred donor before bleaching.");
+                        log("Gaussian blurred donor before bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldDB.getText().trim()) + " px.");
                     }
                 }
             } else if (e.getActionCommand().equals("smoothDAfter")) {
@@ -1535,7 +1535,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         gb.blurGaussian(donorAfter.getProcessor(), sigma, sigma, 0.01);
                         donorAfter.updateAndDraw();
                         smoothDonorAfterButton.setBackground(greenColor);
-                        log("Gaussian blurred donor after bleaching.");
+                        log("Gaussian blurred donor after bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldDA.getText().trim()) + " px.");
                     }
                 }
             } else if (e.getActionCommand().equals("smoothABefore")) {
@@ -1558,7 +1558,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         gb.blurGaussian(acceptorBefore.getProcessor(), sigma, sigma, 0.01);
                         acceptorBefore.updateAndDraw();
                         smoothAcceptorBeforeButton.setBackground(greenColor);
-                        log("Gaussian blurred acceptor before bleaching.");
+                        log("Gaussian blurred acceptor before bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldAB.getText().trim()) + " px.");
                     }
                 }
             } else if (e.getActionCommand().equals("smoothAAfter")) {
@@ -1581,7 +1581,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         gb.blurGaussian(acceptorAfter.getProcessor(), sigma, sigma, 0.01);
                         acceptorAfter.updateAndDraw();
                         smoothAcceptorAfterButton.setBackground(greenColor);
-                        log("Gaussian blurred acceptor after bleaching.");
+                        log("Gaussian blurred acceptor after bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldAA.getText().trim()) + " px.");
                     }
                 }
             } else if (e.getActionCommand().equals("registerImages")) {
