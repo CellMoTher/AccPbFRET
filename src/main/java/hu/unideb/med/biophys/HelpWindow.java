@@ -29,9 +29,10 @@ import javax.swing.JScrollPane;
 
 /**
  *
- * 
+ *
  */
 class HelpWindow extends JFrame {
+
     private AccPbFRET_Plugin accBlWindow;
     private JPanel panel;
 
@@ -42,7 +43,7 @@ class HelpWindow extends JFrame {
         createGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(600, 800);
-        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
+        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
     public void createGui() {
@@ -52,7 +53,7 @@ class HelpWindow extends JFrame {
         panel.setLayout(gridbaglayout);
         setFont(new Font("Helvetica", Font.PLAIN, 12));
 
-        gc.insets = new Insets(4,4,4,4);
+        gc.insets = new Insets(4, 4, 4, 4);
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;

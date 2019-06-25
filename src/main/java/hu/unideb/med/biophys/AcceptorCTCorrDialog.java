@@ -42,9 +42,10 @@ import javax.swing.JRadioButton;
 
 /**
  *
- * 
+ *
  */
-public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
+public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
+
     private AccPbFRET_Plugin accBlWindow;
     private ImagePlus donorCBefore, acceptorCBefore;
     private JPanel panel;
@@ -65,7 +66,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
         createDialogGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(300, 380);
-        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
+        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
     public void createDialogGui() {
@@ -74,14 +75,14 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
         panel = new JPanel();
         panel.setLayout(gridbaglayout);
 
-        gc.insets = new Insets(2,2,6,2);
+        gc.insets = new Insets(2, 2, 6, 2);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
         gc.gridy = 0;
         JLabel infoLabel = new JLabel("<html><center>This factor is calculated based on images of donor and acceptor channels of an acceptor only labeled sample, before photobleaching.</center></html>");
         panel.add(infoLabel, gc);
-        gc.insets = new Insets(2,2,2,2);
+        gc.insets = new Insets(2, 2, 2, 2);
         gc.gridwidth = 3;
         gc.gridx = 0;
         gc.gridy = 1;
@@ -126,7 +127,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
         GridBagLayout gbl = new GridBagLayout();
         GridBagConstraints gcr = new GridBagConstraints();
         radioPanel.setLayout(gbl);
-        gcr.insets = new Insets(0,4,4,4);
+        gcr.insets = new Insets(0, 4, 4, 4);
         gcr.fill = GridBagConstraints.BOTH;
         JLabel modeLabel = new JLabel("Mode:");
         JLabel resultLabel = new JLabel("Result:");
@@ -189,13 +190,13 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-    	try {
+        try {
             if (e.getActionCommand().equals("reset")) {
                 donorCBefore = null;
                 acceptorCBefore = null;
-	            setDonorBeforeButton.setBackground(accBlWindow.originalButtonColor);
-	            setAcceptorBeforeButton.setBackground(accBlWindow.originalButtonColor);
-	            setDonorBeforeThresholdButton.setBackground(accBlWindow.originalButtonColor);
+                setDonorBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                setAcceptorBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                setDonorBeforeThresholdButton.setBackground(accBlWindow.originalButtonColor);
                 setAcceptorBeforeThresholdButton.setBackground(accBlWindow.originalButtonColor);
                 calculateButton.setBackground(accBlWindow.originalButtonColor);
                 setButton.setBackground(accBlWindow.originalButtonColor);
@@ -203,20 +204,20 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                 subtractAcceptorBeforeButton.setBackground(accBlWindow.originalButtonColor);
                 mode1ResultLabel.setText("");
                 mode2ResultLabel.setText("");
-      	    } else if (e.getActionCommand().equals("setDonorCBefore")) {
+            } else if (e.getActionCommand().equals("setDonorCBefore")) {
                 donorCBefore = WindowManager.getCurrentImage();
-      	        if (donorCBefore == null) {
+                if (donorCBefore == null) {
                     accBlWindow.logError("No image is selected. (ct. corr.)");
                     return;
                 }
                 if (donorCBefore.getNChannels() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 channel ("+donorCBefore.getNChannels()+"). Please split it into parts. (ct. corr.)");
-                   donorCBefore = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 channel (" + donorCBefore.getNChannels() + "). Please split it into parts. (ct. corr.)");
+                    donorCBefore = null;
+                    return;
                 } else if (donorCBefore.getNSlices() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 slice ("+donorCBefore.getNSlices()+"). Please split it into parts. (ct. corr.)");
-                   donorCBefore = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 slice (" + donorCBefore.getNSlices() + "). Please split it into parts. (ct. corr.)");
+                    donorCBefore = null;
+                    return;
                 }
                 if (donorCBefore != null && acceptorCBefore != null && donorCBefore.equals(acceptorCBefore)) {
                     accBlWindow.logError("The two images must not be the same. Please select and set an other image. (ct. corr.)");
@@ -227,20 +228,20 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                 donorCBefore.setTitle("Donor before bleaching (ct. corr.) - " + new Date().toString());
                 new ImageConverter(donorCBefore).convertToGray32();
                 setDonorBeforeButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("setAcceptorCBefore")) {
+            } else if (e.getActionCommand().equals("setAcceptorCBefore")) {
                 acceptorCBefore = WindowManager.getCurrentImage();
-      	        if (acceptorCBefore == null) {
+                if (acceptorCBefore == null) {
                     accBlWindow.logError("No image is selected. (ct. corr.)");
                     return;
                 }
                 if (acceptorCBefore.getNChannels() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 channel ("+acceptorCBefore.getNChannels()+"). Please split it into parts. (ct. corr.)");
-                   acceptorCBefore = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 channel (" + acceptorCBefore.getNChannels() + "). Please split it into parts. (ct. corr.)");
+                    acceptorCBefore = null;
+                    return;
                 } else if (acceptorCBefore.getNSlices() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 slice ("+acceptorCBefore.getNSlices()+"). Please split it into parts. (ct. corr.)");
-                   acceptorCBefore = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 slice (" + acceptorCBefore.getNSlices() + "). Please split it into parts. (ct. corr.)");
+                    acceptorCBefore = null;
+                    return;
                 }
                 if (donorCBefore != null && acceptorCBefore != null && donorCBefore.equals(acceptorCBefore)) {
                     accBlWindow.logError("The two images must not be the same. Please select and set an other image. (ct. corr.)");
@@ -251,8 +252,8 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                 acceptorCBefore.setTitle("Acceptor before bleaching (ct. corr.) - " + new Date().toString());
                 new ImageConverter(acceptorCBefore).convertToGray32();
                 setAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("subtractDonorCBefore")) {
-      	        if (donorCBefore == null) {
+            } else if (e.getActionCommand().equals("subtractDonorCBefore")) {
+                if (donorCBefore == null) {
                     accBlWindow.logError("No image is set as donor before bleaching. (ct. corr.)");
                     return;
                 } else if (donorCBefore.getRoi() == null) {
@@ -264,30 +265,30 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                 int height = donorCBefore.getHeight();
                 double sum = 0;
                 int count = 0;
-                for (int i=0; i<width; i++) {
-                    for (int j=0; j<height; j++) {
+                for (int i = 0; i < width; i++) {
+                    for (int j = 0; j < height; j++) {
                         if (donorCBefore.getRoi().contains(i, j)) {
-                            sum += ipDB.getPixelValue(i,j);
+                            sum += ipDB.getPixelValue(i, j);
                             count++;
                         }
-		            }
-        		}
-		        float backgroundAvgDB = (float)(sum/count);
+                    }
+                }
+                float backgroundAvgDB = (float) (sum / count);
 
                 float value = 0;
-                for (int x=0; x < width; x++) {
-                    for (int y=0; y < height; y++) {
-                        value = ipDB.getPixelValue(x,y);
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        value = ipDB.getPixelValue(x, y);
                         value = value - backgroundAvgDB;
-		                ipDB.putPixelValue(x, y, value);
-        		    }
-		        }
-		        donorCBefore.updateAndDraw();
-		        donorCBefore.killRoi();
-                accBlWindow.log("Subtracted background ("+backgroundAvgDB+") of donor before bleaching. (ct. corr.)");
+                        ipDB.putPixelValue(x, y, value);
+                    }
+                }
+                donorCBefore.updateAndDraw();
+                donorCBefore.killRoi();
+                accBlWindow.log("Subtracted background (" + backgroundAvgDB + ") of donor before bleaching. (ct. corr.)");
                 subtractDonorBeforeButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("subtractAcceptorCBefore")) {
-      	        if (acceptorCBefore == null) {
+            } else if (e.getActionCommand().equals("subtractAcceptorCBefore")) {
+                if (acceptorCBefore == null) {
                     accBlWindow.logError("No image is set as acceptor before bleaching. (ct. corr.)");
                     return;
                 } else if (acceptorCBefore.getRoi() == null) {
@@ -299,49 +300,49 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                 int height = acceptorCBefore.getHeight();
                 double sum = 0;
                 int count = 0;
-                for (int i=0; i<width; i++) {
-                    for (int j=0; j<height; j++) {
+                for (int i = 0; i < width; i++) {
+                    for (int j = 0; j < height; j++) {
                         if (acceptorCBefore.getRoi().contains(i, j)) {
-                            sum += ipAB.getPixelValue(i,j);
+                            sum += ipAB.getPixelValue(i, j);
                             count++;
                         }
-		            }
-        		}
-		        float backgroundAvgDA = (float)(sum/count);
+                    }
+                }
+                float backgroundAvgDA = (float) (sum / count);
 
                 float value = 0;
-                for (int x=0; x < width; x++) {
-                    for (int y=0; y < height; y++) {
-                        value = ipAB.getPixelValue(x,y);
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        value = ipAB.getPixelValue(x, y);
                         value = value - backgroundAvgDA;
-		                ipAB.putPixelValue(x, y, value);
-        		    }
-		        }
-		        acceptorCBefore.updateAndDraw();
-		        acceptorCBefore.killRoi();
-                accBlWindow.log("Subtracted background ("+backgroundAvgDA+") of acceptor before bleaching. (ct. corr.)");
+                        ipAB.putPixelValue(x, y, value);
+                    }
+                }
+                acceptorCBefore.updateAndDraw();
+                acceptorCBefore.killRoi();
+                accBlWindow.log("Subtracted background (" + backgroundAvgDA + ") of acceptor before bleaching. (ct. corr.)");
                 subtractAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("setDonorCBeforeThreshold")) {
-      	        if (donorCBefore == null) {
+            } else if (e.getActionCommand().equals("setDonorCBeforeThreshold")) {
+                if (donorCBefore == null) {
                     accBlWindow.logError("No image is set as donor before bleaching. (ct. corr.)");
                     return;
                 }
                 IJ.selectWindow(donorCBefore.getTitle());
                 IJ.run("Threshold...");
                 setDonorBeforeThresholdButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("setAcceptorCBeforeThreshold")) {
-      	        if (acceptorCBefore == null) {
+            } else if (e.getActionCommand().equals("setAcceptorCBeforeThreshold")) {
+                if (acceptorCBefore == null) {
                     accBlWindow.logError("No image is set as acceptor before bleaching. (ct. corr.)");
                     return;
                 }
                 IJ.selectWindow(acceptorCBefore.getTitle());
                 IJ.run("Threshold...");
                 setAcceptorBeforeThresholdButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("calculate")) {
+            } else if (e.getActionCommand().equals("calculate")) {
                 if (donorCBefore == null) {
                     accBlWindow.logError("No image is set as donor before bleaching. (ct. corr.)");
                     return;
-      	        } else if (acceptorCBefore == null) {
+                } else if (acceptorCBefore == null) {
                     accBlWindow.logError("No image is set as acceptor before bleaching. (ct. corr.)");
                     return;
                 } else {
@@ -351,7 +352,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                     float[][] corrImgPoints = null;
                     int width = ipDB.getWidth();
                     int height = ipDB.getHeight();
-                    if(showCTCImagesCB.isSelected()) {
+                    if (showCTCImagesCB.isSelected()) {
                         corrImgPoints = new float[width][height];
                     }
                     double sumc = 0;
@@ -362,17 +363,17 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                                 double current = ipDB.getPixelValue(i, j) / ipAB.getPixelValue(i, j);
                                 sumc += current;
                                 countc++;
-                                if(showCTCImagesCB.isSelected()) {
-                                    corrImgPoints[i][j] = (float)current;
+                                if (showCTCImagesCB.isSelected()) {
+                                    corrImgPoints[i][j] = (float) current;
                                 }
                             }
                         }
                     }
-                    float avg = (float)(sumc / countc);
+                    float avg = (float) (sumc / countc);
                     mode1ResultLabel.setText(df.format(avg).toString());
 
-                    float[] ipDBP = (float[])ipDB.getPixels();
-                    float[] ipABP = (float[])ipAB.getPixels();
+                    float[] ipDBP = (float[]) ipDB.getPixels();
+                    float[] ipABP = (float[]) ipAB.getPixels();
                     double avgDonorBefore = 0;
                     double avgAcceptorBefore = 0;
                     countc = 0;
@@ -393,33 +394,33 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener{
                         }
                     }
                     avgAcceptorBefore = sumc / countc;
-                    mode2ResultLabel.setText(df.format((float)(avgDonorBefore/avgAcceptorBefore)).toString());
+                    mode2ResultLabel.setText(df.format((float) (avgDonorBefore / avgAcceptorBefore)).toString());
                     calculateButton.setBackground(accBlWindow.greenColor);
                     donorCBefore.changes = false;
                     acceptorCBefore.changes = false;
-                    if(showCTCImagesCB.isSelected()) {
+                    if (showCTCImagesCB.isSelected()) {
                         ImagePlus corrImg = new ImagePlus("Cross-talk correction image", new FloatProcessor(corrImgPoints));
                         corrImg.show();
                     }
                 }
-      	    } else if (e.getActionCommand().equals("setfactor")) {
-                    if (quotientsButton.isSelected()) {
-                        if (mode1ResultLabel.getText().equals("")) {
-                           accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
-                           return;
-                        }
-                        accBlWindow.setCrosstalkCorrection(mode1ResultLabel.getText());
-                        accBlWindow.calculateAccCTCorrButton.setBackground(accBlWindow.greenColor);
-                        setButton.setBackground(accBlWindow.greenColor);
-                    } else {
-                        if (mode2ResultLabel.getText().equals("")) {
-                           accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
-                           return;
-                        }
-                        accBlWindow.setCrosstalkCorrection(mode2ResultLabel.getText());
-                        accBlWindow.calculateAccCTCorrButton.setBackground(accBlWindow.greenColor);
-                        setButton.setBackground(accBlWindow.greenColor);
+            } else if (e.getActionCommand().equals("setfactor")) {
+                if (quotientsButton.isSelected()) {
+                    if (mode1ResultLabel.getText().equals("")) {
+                        accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
+                        return;
                     }
+                    accBlWindow.setCrosstalkCorrection(mode1ResultLabel.getText());
+                    accBlWindow.calculateAccCTCorrButton.setBackground(accBlWindow.greenColor);
+                    setButton.setBackground(accBlWindow.greenColor);
+                } else {
+                    if (mode2ResultLabel.getText().equals("")) {
+                        accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
+                        return;
+                    }
+                    accBlWindow.setCrosstalkCorrection(mode2ResultLabel.getText());
+                    accBlWindow.calculateAccCTCorrButton.setBackground(accBlWindow.greenColor);
+                    setButton.setBackground(accBlWindow.greenColor);
+                }
             }
         } catch (Throwable t) {
             accBlWindow.logException(t.toString(), t);

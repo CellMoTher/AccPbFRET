@@ -34,9 +34,10 @@ import javax.swing.JPanel;
 
 /**
  *
- * 
+ *
  */
-public class ShiftDialog extends JDialog implements ActionListener{
+public class ShiftDialog extends JDialog implements ActionListener {
+
     private AccPbFRET_Plugin accBlWindow;
     JPanel panel;
     JButton leftButton, rightButton, upButton, downButton;
@@ -51,7 +52,7 @@ public class ShiftDialog extends JDialog implements ActionListener{
         getRootPane().setDefaultButton(cancelButton);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(150, 150);
-        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
+        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
     public void createDialogGui() {
@@ -60,7 +61,7 @@ public class ShiftDialog extends JDialog implements ActionListener{
         panel = new JPanel();
         panel.setLayout(gridbaglayout);
 
-        gc.insets = new Insets(0,0,0,0);
+        gc.insets = new Insets(0, 0, 0, 0);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridwidth = 1;
         gc.gridx = 1;
@@ -81,14 +82,14 @@ public class ShiftDialog extends JDialog implements ActionListener{
         rightButton.addActionListener(this);
         rightButton.setActionCommand("right");
         panel.add(rightButton, gc);
-        gc.insets = new Insets(2,2,2,2);
+        gc.insets = new Insets(2, 2, 2, 2);
         gc.gridx = 1;
         gc.gridy = 2;
         downButton = new JButton("v");
         downButton.addActionListener(this);
         downButton.setActionCommand("down");
         panel.add(downButton, gc);
-        gc.insets = new Insets(0,0,4,0);
+        gc.insets = new Insets(0, 0, 4, 0);
         gc.gridwidth = 3;
         gc.gridx = 0;
         gc.gridy = 3;
@@ -100,19 +101,19 @@ public class ShiftDialog extends JDialog implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-    	try {
+        try {
             if (e.getActionCommand().equals("cancel")) {
-	            setVisible(false);
-      	    } else if (e.getActionCommand().equals("up")) {
+                setVisible(false);
+            } else if (e.getActionCommand().equals("up")) {
                 ImagePlus image = WindowManager.getCurrentImage();
                 shiftUp(image, 1);
-      	    } else if (e.getActionCommand().equals("down")) {
+            } else if (e.getActionCommand().equals("down")) {
                 ImagePlus image = WindowManager.getCurrentImage();
                 shiftDown(image, 1);
-      	    } else if (e.getActionCommand().equals("left")) {
+            } else if (e.getActionCommand().equals("left")) {
                 ImagePlus image = WindowManager.getCurrentImage();
                 shiftLeft(image, 1);
-      	    } else if (e.getActionCommand().equals("right")) {
+            } else if (e.getActionCommand().equals("right")) {
                 ImagePlus image = WindowManager.getCurrentImage();
                 shiftRight(image, 1);
             }
@@ -121,20 +122,20 @@ public class ShiftDialog extends JDialog implements ActionListener{
         }
     }
 
-    public void shiftUp(ImagePlus image, int value){
+    public void shiftUp(ImagePlus image, int value) {
         if (image == null) {
             return;
         }
         int width = image.getWidth();
         int height = image.getHeight();
-        FloatProcessor fp = (FloatProcessor)image.getProcessor();
+        FloatProcessor fp = (FloatProcessor) image.getProcessor();
         ColorModel cm = fp.getColorModel();
 
-        float[] fpPixels = (float[])fp.getPixels();
+        float[] fpPixels = (float[]) fp.getPixels();
         float[][] fpPixels2 = new float[width][height];
         for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height-value; j++) {
-                fpPixels2[i][j] = fpPixels[width*(j+value)+i];
+            for (int j = 0; j < height - value; j++) {
+                fpPixels2[i][j] = fpPixels[width * (j + value) + i];
             }
         }
         FloatProcessor newFp = new FloatProcessor(fpPixels2);
@@ -143,21 +144,20 @@ public class ShiftDialog extends JDialog implements ActionListener{
         image.updateAndDraw();
     }
 
-
-    public void shiftDown(ImagePlus image, int value){
+    public void shiftDown(ImagePlus image, int value) {
         if (image == null) {
             return;
         }
         int width = image.getWidth();
         int height = image.getHeight();
-        FloatProcessor fp = (FloatProcessor)image.getProcessor();
+        FloatProcessor fp = (FloatProcessor) image.getProcessor();
         ColorModel cm = fp.getColorModel();
 
-        float[] fpPixels = (float[])fp.getPixels();
+        float[] fpPixels = (float[]) fp.getPixels();
         float[][] fpPixels2 = new float[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = value; j < height; j++) {
-                fpPixels2[i][j] = fpPixels[width*(j-value)+i];
+                fpPixels2[i][j] = fpPixels[width * (j - value) + i];
             }
         }
         FloatProcessor newFp = new FloatProcessor(fpPixels2);
@@ -166,21 +166,20 @@ public class ShiftDialog extends JDialog implements ActionListener{
         image.updateAndDraw();
     }
 
-
-    public void shiftLeft(ImagePlus image, int value){
+    public void shiftLeft(ImagePlus image, int value) {
         if (image == null) {
             return;
         }
         int width = image.getWidth();
         int height = image.getHeight();
-        FloatProcessor fp = (FloatProcessor)image.getProcessor();
+        FloatProcessor fp = (FloatProcessor) image.getProcessor();
         ColorModel cm = fp.getColorModel();
 
-        float[] fpPixels = (float[])fp.getPixels();
+        float[] fpPixels = (float[]) fp.getPixels();
         float[][] fpPixels2 = new float[width][height];
-        for (int i = 0; i < width-value; i++) {
+        for (int i = 0; i < width - value; i++) {
             for (int j = 0; j < height; j++) {
-                fpPixels2[i][j] = fpPixels[width*j+(i+value)];
+                fpPixels2[i][j] = fpPixels[width * j + (i + value)];
             }
         }
         FloatProcessor newFp = new FloatProcessor(fpPixels2);
@@ -189,21 +188,20 @@ public class ShiftDialog extends JDialog implements ActionListener{
         image.updateAndDraw();
     }
 
-
-    public void shiftRight(ImagePlus image, int value){
+    public void shiftRight(ImagePlus image, int value) {
         if (image == null) {
             return;
         }
         int width = image.getWidth();
         int height = image.getHeight();
-        FloatProcessor fp = (FloatProcessor)image.getProcessor();
+        FloatProcessor fp = (FloatProcessor) image.getProcessor();
         ColorModel cm = fp.getColorModel();
 
-        float[] fpPixels = (float[])fp.getPixels();
+        float[] fpPixels = (float[]) fp.getPixels();
         float[][] fpPixels2 = new float[width][height];
         for (int i = value; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                fpPixels2[i][j] = fpPixels[width*j+(i-value)];
+                fpPixels2[i][j] = fpPixels[width * j + (i - value)];
             }
         }
         FloatProcessor newFp = new FloatProcessor(fpPixels2);

@@ -37,9 +37,10 @@ import javax.swing.JPanel;
 
 /**
  *
- * 
+ *
  */
-public class ApplyMaskDialog extends JDialog implements ActionListener{
+public class ApplyMaskDialog extends JDialog implements ActionListener {
+
     private AccPbFRET_Plugin accBlWindow;
     private ImagePlus toMaskImg, maskImg;
     private JPanel panel;
@@ -53,7 +54,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
         createDialogGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(275, 240);
-        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
+        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
     public void createDialogGui() {
@@ -62,14 +63,14 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
         panel = new JPanel();
         panel.setLayout(gridbaglayout);
 
-        gc.insets = new Insets(2,2,6,2);
+        gc.insets = new Insets(2, 2, 6, 2);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridwidth = 2;
         gc.gridx = 0;
         gc.gridy = 0;
         JLabel infoLabel = new JLabel("<html><center>After setting an image to mask and a mask image (with NaN background pixels), two images will be created. The first one will contain the pixels which are not NaN in the mask, and the second one the others.</center></html>");
         panel.add(infoLabel, gc);
-        gc.insets = new Insets(2,2,2,2);
+        gc.insets = new Insets(2, 2, 2, 2);
         gc.gridx = 0;
         gc.gridy = 1;
         setToMaskImgButton = new JButton("Set image to be masked");
@@ -93,45 +94,45 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-    	try {
+        try {
             if (e.getActionCommand().equals("setImageToMask")) {
                 toMaskImg = WindowManager.getCurrentImage();
-      	        if (toMaskImg == null) {
+                if (toMaskImg == null) {
                     accBlWindow.logError("No image is selected. (Masking)");
                     return;
                 }
                 if (toMaskImg.getImageStackSize() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 channel ("+toMaskImg.getImageStackSize()+"). Please split it into parts. (Masking)");
-                   toMaskImg = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 channel (" + toMaskImg.getImageStackSize() + "). Please split it into parts. (Masking)");
+                    toMaskImg = null;
+                    return;
                 } else if (toMaskImg.getNSlices() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 slice ("+toMaskImg.getNSlices()+"). Please split it into parts. (Masking)");
-                   toMaskImg = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 slice (" + toMaskImg.getNSlices() + "). Please split it into parts. (Masking)");
+                    toMaskImg = null;
+                    return;
                 }
                 toMaskImg.setTitle("Image to mask - " + new Date().toString());
                 new ImageConverter(toMaskImg).convertToGray32();
                 setToMaskImgButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("setMaskImage")) {
+            } else if (e.getActionCommand().equals("setMaskImage")) {
                 maskImg = WindowManager.getCurrentImage();
-      	        if (maskImg == null) {
+                if (maskImg == null) {
                     accBlWindow.logError("No image is selected. (Masking)");
                     return;
                 }
                 if (maskImg.getImageStackSize() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 channel ("+maskImg.getImageStackSize()+"). Please split it into parts. (Masking)");
-                   maskImg = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 channel (" + maskImg.getImageStackSize() + "). Please split it into parts. (Masking)");
+                    maskImg = null;
+                    return;
                 } else if (maskImg.getNSlices() > 1) {
-                   accBlWindow.logError("Current image contains more than 1 slice ("+maskImg.getNSlices()+"). Please split it into parts. (Masking)");
-                   maskImg = null;
-                   return;
+                    accBlWindow.logError("Current image contains more than 1 slice (" + maskImg.getNSlices() + "). Please split it into parts. (Masking)");
+                    maskImg = null;
+                    return;
                 }
                 maskImg.setTitle("Mask image - " + new Date().toString());
                 new ImageConverter(maskImg).convertToGray32();
                 setMaskImgButton.setBackground(accBlWindow.greenColor);
-      	    } else if (e.getActionCommand().equals("createImages")) {
-      	        if (toMaskImg == null) {
+            } else if (e.getActionCommand().equals("createImages")) {
+                if (toMaskImg == null) {
                     accBlWindow.logError("No image to mask is set. (Masking)");
                     return;
                 } else if (maskImg == null) {
@@ -141,8 +142,8 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
                 ImageProcessor ipTM = toMaskImg.getProcessor();
                 ImageProcessor ipM = maskImg.getProcessor();
 
-                float[] ipTMP = (float[])ipTM.getPixels();
-                float[] ipMP = (float[])ipM.getPixels();
+                float[] ipTMP = (float[]) ipTM.getPixels();
+                float[] ipMP = (float[]) ipM.getPixels();
 
                 int width = ipTM.getWidth();
                 int height = ipTM.getHeight();
@@ -150,12 +151,12 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
                 float[][] img2Points = new float[width][height];
                 for (int i = 0; i < width; i++) {
                     for (int j = 0; j < height; j++) {
-                        if (!Float.isNaN(ipMP[width*j+i])) {
-                            img1Points[i][j] = ipTMP[width*j+i];
+                        if (!Float.isNaN(ipMP[width * j + i])) {
+                            img1Points[i][j] = ipTMP[width * j + i];
                             img2Points[i][j] = Float.NaN;
                         } else {
                             img1Points[i][j] = Float.NaN;
-                            img2Points[i][j] = ipTMP[width*j+i];
+                            img2Points[i][j] = ipTMP[width * j + i];
                         }
                     }
                 }
@@ -165,7 +166,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
                 img2.show();
                 ImagePlus img1 = new ImagePlus("Masked image 1 (pixels in the mask)", fp1);
                 img1.show();
-           }
+            }
         } catch (Throwable t) {
             accBlWindow.logException(t.toString(), t);
         }
