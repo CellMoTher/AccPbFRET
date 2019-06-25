@@ -102,20 +102,32 @@ public class ShiftDialog extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         try {
-            if (e.getActionCommand().equals("cancel")) {
-                setVisible(false);
-            } else if (e.getActionCommand().equals("up")) {
-                ImagePlus image = WindowManager.getCurrentImage();
-                shiftUp(image, 1);
-            } else if (e.getActionCommand().equals("down")) {
-                ImagePlus image = WindowManager.getCurrentImage();
-                shiftDown(image, 1);
-            } else if (e.getActionCommand().equals("left")) {
-                ImagePlus image = WindowManager.getCurrentImage();
-                shiftLeft(image, 1);
-            } else if (e.getActionCommand().equals("right")) {
-                ImagePlus image = WindowManager.getCurrentImage();
-                shiftRight(image, 1);
+            switch (e.getActionCommand()) {
+                case "cancel":
+                    setVisible(false);
+                    break;
+                case "up": {
+                    ImagePlus image = WindowManager.getCurrentImage();
+                    shiftUp(image, 1);
+                    break;
+                }
+                case "down": {
+                    ImagePlus image = WindowManager.getCurrentImage();
+                    shiftDown(image, 1);
+                    break;
+                }
+                case "left": {
+                    ImagePlus image = WindowManager.getCurrentImage();
+                    shiftLeft(image, 1);
+                    break;
+                }
+                case "right": {
+                    ImagePlus image = WindowManager.getCurrentImage();
+                    shiftRight(image, 1);
+                    break;
+                }
+                default:
+                    break;
             }
         } catch (Throwable t) {
             accBlWindow.logException(t.toString(), t);
