@@ -2042,8 +2042,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     resultsTable.incrementCounter();
                     int widthTi = transferImage.getWidth();
                     int heightTi = transferImage.getHeight();
+                    int currentRow = resultsTable.getCounter();
                     if(currentlyProcessedFileName != null) {
-                        resultsTable.addLabel("File", currentlyProcessedFileName);
+                        resultsTable.setValue("File", currentRow, currentlyProcessedFileName);
                     }
                     if (transferImage.getRoi() != null) {
                         Roi roi = transferImage.getRoi();
@@ -2140,8 +2141,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             resultsTable.incrementCounter();
             int width = transferImage.getWidth();
             int height = transferImage.getHeight();
+            int currentRow = resultsTable.getCounter();
             if(currentlyProcessedFileName != null) {
-                resultsTable.addLabel("File", currentlyProcessedFileName);
+                resultsTable.setValue("File", currentRow, currentlyProcessedFileName);
             }
             if (transferImage.getRoi() != null) {
                 Roi roi = transferImage.getRoi();
