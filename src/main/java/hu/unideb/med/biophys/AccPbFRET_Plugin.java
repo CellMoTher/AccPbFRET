@@ -648,7 +648,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridx = 0;
         gc.gridy = 21;
         gc.insets = new Insets(0,6,0,6);
-        JLabel thInfo = new JLabel("(Threshold setting: set threshold, press apply, select \"Set bg pixels to NaN\", press ok and close threshold window)");
+        JLabel thInfo = new JLabel("Threshold setting: set threshold, click Apply, then click Set to NaN");
         thInfo.setFont(new Font("Helvetica", Font.PLAIN, 10));
         container.add(thInfo, gc);
         gc.gridwidth = 1;
