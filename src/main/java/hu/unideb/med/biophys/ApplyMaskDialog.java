@@ -67,7 +67,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener{
         gc.gridwidth = 2;
         gc.gridx = 0;
         gc.gridy = 0;
-        JLabel infoLabel = new JLabel("<html><center>After setting an image to mask and a mask image (with NaN background pixels), two images will be created. The first one will contain the pixles which are not NaN in the mask, and the second one the others.</center></html>");
+        JLabel infoLabel = new JLabel("<html><center>After setting an image to mask and a mask image (with NaN background pixels), two images will be created. The first one will contain the pixels which are not NaN in the mask, and the second one the others.</center></html>");
         panel.add(infoLabel, gc);
         gc.insets = new Insets(2,2,2,2);
         gc.gridx = 0;
