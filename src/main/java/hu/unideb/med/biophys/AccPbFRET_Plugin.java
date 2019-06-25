@@ -142,6 +142,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(windowWidth, windowHeight);
+        pack();
         setLocation(screen.width - getWidth(), screen.height/2 - getHeight()/2);
         setVisible(true);
         currentDirectory = System.getProperty("user.home");
