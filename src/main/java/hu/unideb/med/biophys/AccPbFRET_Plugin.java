@@ -1811,10 +1811,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     } else {
                         DecimalFormat df = new DecimalFormat("#0.000");
                         FHT fht1 = new FHT(donorBefore.getProcessor().duplicate());
+                        fht1.setShowProgress(false); 
                         fht1.transform();
                         FHT fht2 = new FHT(donorAfter.getProcessor().duplicate());
+                        fht2.setShowProgress(false); 
                         fht2.transform();
                         FHT res = fht1.conjugateMultiply(fht2);
+                        res.setShowProgress(false); 
                         res.inverseTransform();
                         ImagePlus image = new ImagePlus("Result of registration", res);
                         ImageProcessor ip = image.getProcessor();
