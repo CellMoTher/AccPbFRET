@@ -44,7 +44,7 @@ public class ShiftDialog extends JDialog implements ActionListener {
     JButton cancelButton = new JButton("Close");
 
     public ShiftDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("32bit image shifter");
+        setTitle("32-bit Image Shifter");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setModal(false);

@@ -49,7 +49,7 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
     private JCheckBox useMainWindowImages;
 
     public CalculateImgRatioDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("Calculate ratio of two images");
+        setTitle("Calculate Ratio of Two Images");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);

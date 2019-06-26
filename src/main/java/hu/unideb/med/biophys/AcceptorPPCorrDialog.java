@@ -59,7 +59,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
     private JCheckBox showPPImagesCB;
 
     public AcceptorPPCorrDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("Acceptor photoproduct correction factor");
+        setTitle("Acceptor Photoproduct Correction Factor");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);

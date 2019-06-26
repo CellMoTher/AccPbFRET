@@ -60,7 +60,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
     private JCheckBox showBlCImagesCB;
 
     public DonorBlCorrDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("Donor bleaching correction factor");
+        setTitle("Donor Bleaching Correction Factor");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);

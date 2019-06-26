@@ -59,7 +59,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
     private JCheckBox showCTCImagesCB;
 
     public AcceptorCTCorrDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("Acceptor cross-talk correction factor");
+        setTitle("Acceptor Cross-Talk Correction Factor");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);

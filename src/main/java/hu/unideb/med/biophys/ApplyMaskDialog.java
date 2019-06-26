@@ -47,7 +47,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
     private JButton setToMaskImgButton, setMaskImgButton, createImagesButton;
 
     public ApplyMaskDialog(AccPbFRET_Plugin accBlWindow) {
-        setTitle("Apply mask to an image");
+        setTitle("Apply Mask to An Image");
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
