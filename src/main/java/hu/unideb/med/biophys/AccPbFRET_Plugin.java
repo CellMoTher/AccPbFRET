@@ -1811,106 +1811,110 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     } else {
                         DecimalFormat df = new DecimalFormat("#0.000");
                         FHT fht1 = new FHT(donorBefore.getProcessor().duplicate());
-                        fht1.setShowProgress(false); 
-                        fht1.transform();
                         FHT fht2 = new FHT(donorAfter.getProcessor().duplicate());
-                        fht2.setShowProgress(false); 
-                        fht2.transform();
-                        FHT res = fht1.conjugateMultiply(fht2);
-                        res.setShowProgress(false); 
-                        res.inverseTransform();
-                        ImagePlus image = new ImagePlus("Result of registration", res);
-                        ImageProcessor ip = image.getProcessor();
-                        int width = ip.getWidth();
-                        int height = ip.getHeight();
-                        int maximum = 0;
-                        int maxx = -1;
-                        int maxy = -1;
-                        for (int i = 0; i < width; i++) {
-                            for (int j = 0; j < height; j++) {
-                                if (ip.getPixel(i, j) > maximum) {
-                                    maximum = ip.getPixel(i, j);
-                                    maxx = i;
-                                    maxy = j;
-                                }
-                            }
-                        }
-                        int shiftX = 0;
-                        int shiftY = 0;
-                        if (maxx != 0 || maxy != 0) {
-                            ShiftDialog sd = new ShiftDialog(this);
-                            if (maxy > height / 2) {
-                                log("Shifting donor after image up " + (height - maxy) + " pixel" + ((height - maxy) > 1 ? "s" : "") + ".");
-                                sd.shiftUp(donorAfter, height - maxy);
-                                if (applyShiftCB.isSelected()) {
-                                    sd.shiftUp(acceptorAfter, height - maxy);
-                                }
-                            } else if (maxy != 0) {
-                                log("Shifting donor after image down " + maxy + " pixel" + (maxy > 1 ? "s" : "") + ".");
-                                sd.shiftDown(donorAfter, maxy);
-                                if (applyShiftCB.isSelected()) {
-                                    sd.shiftDown(acceptorAfter, maxy);
-                                }
-                            }
-                            if (maxx > width / 2) {
-                                log("Shifting donor after image to the left " + (width - maxx) + " pixel" + ((width - maxx) > 1 ? "s" : "") + ".");
-                                sd.shiftLeft(donorAfter, width - maxx);
-                                if (applyShiftCB.isSelected()) {
-                                    sd.shiftLeft(acceptorAfter, width - maxx);
-                                }
-                            } else if (maxx != 0) {
-                                log("Shifting donor after image to the right " + maxx + " pixel" + (maxx > 1 ? "s" : "") + ".");
-                                sd.shiftRight(donorAfter, maxx);
-                                if (applyShiftCB.isSelected()) {
-                                    sd.shiftRight(acceptorAfter, maxx);
-                                }
-                            }
-                            actionPerformed(new ActionEvent(registerButton, 1, "registerImages"));
+                        if (!fht1.powerOf2Size() || !fht2.powerOf2Size()) {
+                            logError("Images must be square and power of 2 size for registration.");
                         } else {
-                            double countAll = 0;
-                            double count = 0;
-                            float db, da = 0;
-                            double p = 1.10;
-                            log("Registration finished.");
-                            Roi roi = donorBefore.getRoi();
-                            if (roi == null) {
-                                logWarning("The calculated statistics after registration are more authoritative if there is a ROI defined in the donor before image, and the calculations are based on that.");
-                                donorAfter.killRoi();
-                            } else {
-                                donorAfter.setRoi(donorBefore.getRoi());
-                            }
-
-                            ImageStatistics isMeanDB = ImageStatistics.getStatistics(donorBefore.getProcessor(), Measurements.MEAN, null);
-                            ImageStatistics isMeanDA = ImageStatistics.getStatistics(donorAfter.getProcessor(), Measurements.MEAN, null);
-                            ImageStatistics isStdDevDB = ImageStatistics.getStatistics(donorBefore.getProcessor(), Measurements.STD_DEV, null);
-                            ImageStatistics isStdDevDA = ImageStatistics.getStatistics(donorAfter.getProcessor(), Measurements.STD_DEV, null);
-
-                            for (int x = 0; x < width; x++) {
-                                for (int y = 0; y < height; y++) {
-                                    if (roi != null && roi.contains(x, y)) {
-                                        countAll++;
-                                        db = donorBefore.getProcessor().getPixelValue(x, y);
-                                        da = donorAfter.getProcessor().getPixelValue(x, y);
-                                        if (db != 0 && da != 0 && db / da > p) {
-                                            count++;
-                                        }
-                                    } else if (roi == null) {
-                                        countAll++;
-                                        db = donorBefore.getProcessor().getPixelValue(x, y);
-                                        da = donorAfter.getProcessor().getPixelValue(x, y);
-                                        if (db != 0 && da != 0 && db / da > p) {
-                                            count++;
-                                        }
+                            fht1.setShowProgress(false);
+                            fht1.transform();
+                            fht2.setShowProgress(false);
+                            fht2.transform();
+                            FHT res = fht1.conjugateMultiply(fht2);
+                            res.setShowProgress(false);
+                            res.inverseTransform();
+                            ImagePlus image = new ImagePlus("Result of registration", res);
+                            ImageProcessor ip = image.getProcessor();
+                            int width = ip.getWidth();
+                            int height = ip.getHeight();
+                            int maximum = 0;
+                            int maxx = -1;
+                            int maxy = -1;
+                            for (int i = 0; i < width; i++) {
+                                for (int j = 0; j < height; j++) {
+                                    if (ip.getPixel(i, j) > maximum) {
+                                        maximum = ip.getPixel(i, j);
+                                        maxx = i;
+                                        maxy = j;
                                     }
                                 }
                             }
-                            log("Relative dispersion (SD/mean) of donor before bleaching image: " + df.format((float) (isStdDevDB.stdDev / isMeanDB.mean)));
-                            log("Relative dispersion (SD/mean) of donor after bleaching image: " + df.format((float) (isStdDevDA.stdDev / isMeanDA.mean)));
-                            df.applyPattern("#0.0");
-                            log(df.format(count / countAll * 100) + "% of pixels has lower intensity by 10% in the donor after than in the donor before image.");
-                            registerButton.setBackground(greenColor);
-                            registerButton.setOpaque(true);
-                            registerButton.setBorderPainted(false);
+                            int shiftX = 0;
+                            int shiftY = 0;
+                            if (maxx != 0 || maxy != 0) {
+                                ShiftDialog sd = new ShiftDialog(this);
+                                if (maxy > height / 2) {
+                                    log("Shifting donor after image up " + (height - maxy) + " pixel" + ((height - maxy) > 1 ? "s" : "") + ".");
+                                    sd.shiftUp(donorAfter, height - maxy);
+                                    if (applyShiftCB.isSelected()) {
+                                        sd.shiftUp(acceptorAfter, height - maxy);
+                                    }
+                                } else if (maxy != 0) {
+                                    log("Shifting donor after image down " + maxy + " pixel" + (maxy > 1 ? "s" : "") + ".");
+                                    sd.shiftDown(donorAfter, maxy);
+                                    if (applyShiftCB.isSelected()) {
+                                        sd.shiftDown(acceptorAfter, maxy);
+                                    }
+                                }
+                                if (maxx > width / 2) {
+                                    log("Shifting donor after image to the left " + (width - maxx) + " pixel" + ((width - maxx) > 1 ? "s" : "") + ".");
+                                    sd.shiftLeft(donorAfter, width - maxx);
+                                    if (applyShiftCB.isSelected()) {
+                                        sd.shiftLeft(acceptorAfter, width - maxx);
+                                    }
+                                } else if (maxx != 0) {
+                                    log("Shifting donor after image to the right " + maxx + " pixel" + (maxx > 1 ? "s" : "") + ".");
+                                    sd.shiftRight(donorAfter, maxx);
+                                    if (applyShiftCB.isSelected()) {
+                                        sd.shiftRight(acceptorAfter, maxx);
+                                    }
+                                }
+                                actionPerformed(new ActionEvent(registerButton, 1, "registerImages"));
+                            } else {
+                                double countAll = 0;
+                                double count = 0;
+                                float db, da = 0;
+                                double p = 1.10;
+                                log("Registration finished.");
+                                Roi roi = donorBefore.getRoi();
+                                if (roi == null) {
+                                    logWarning("The calculated statistics after registration are more authoritative if there is a ROI defined in the donor before image, and the calculations are based on that.");
+                                    donorAfter.killRoi();
+                                } else {
+                                    donorAfter.setRoi(donorBefore.getRoi());
+                                }
+
+                                ImageStatistics isMeanDB = ImageStatistics.getStatistics(donorBefore.getProcessor(), Measurements.MEAN, null);
+                                ImageStatistics isMeanDA = ImageStatistics.getStatistics(donorAfter.getProcessor(), Measurements.MEAN, null);
+                                ImageStatistics isStdDevDB = ImageStatistics.getStatistics(donorBefore.getProcessor(), Measurements.STD_DEV, null);
+                                ImageStatistics isStdDevDA = ImageStatistics.getStatistics(donorAfter.getProcessor(), Measurements.STD_DEV, null);
+
+                                for (int x = 0; x < width; x++) {
+                                    for (int y = 0; y < height; y++) {
+                                        if (roi != null && roi.contains(x, y)) {
+                                            countAll++;
+                                            db = donorBefore.getProcessor().getPixelValue(x, y);
+                                            da = donorAfter.getProcessor().getPixelValue(x, y);
+                                            if (db != 0 && da != 0 && db / da > p) {
+                                                count++;
+                                            }
+                                        } else if (roi == null) {
+                                            countAll++;
+                                            db = donorBefore.getProcessor().getPixelValue(x, y);
+                                            da = donorAfter.getProcessor().getPixelValue(x, y);
+                                            if (db != 0 && da != 0 && db / da > p) {
+                                                count++;
+                                            }
+                                        }
+                                    }
+                                }
+                                log("Relative dispersion (SD/mean) of donor before bleaching image: " + df.format((float) (isStdDevDB.stdDev / isMeanDB.mean)));
+                                log("Relative dispersion (SD/mean) of donor after bleaching image: " + df.format((float) (isStdDevDA.stdDev / isMeanDA.mean)));
+                                df.applyPattern("#0.0");
+                                log(df.format(count / countAll * 100) + "% of pixels has lower intensity by 10% in the donor after than in the donor before image.");
+                                registerButton.setBackground(greenColor);
+                                registerButton.setOpaque(true);
+                                registerButton.setBorderPainted(false);
+                            }
                         }
                     }
                     break;
