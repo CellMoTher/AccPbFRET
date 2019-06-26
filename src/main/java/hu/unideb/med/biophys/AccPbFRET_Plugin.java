@@ -32,6 +32,7 @@ import ij.process.FloatProcessor;
 import ij.process.ImageConverter;
 import ij.process.ImageProcessor;
 import ij.process.ImageStatistics;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -279,7 +280,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         addWindowListener(this);
         GridBagLayout gridbaglayout = new GridBagLayout();
         GridBagConstraints gc = new GridBagConstraints();
-        Container container = getContentPane();
+        Container contentPane = getContentPane();
+        JScrollPane mainScrollPane = new JScrollPane();
+        JPanel container = new JPanel();
         container.setLayout(gridbaglayout);
 
         JPanel donorBeforeBleachingPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
@@ -924,7 +927,10 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         StyleConstants.setForeground(style, Color.black.darker());
         logScrollPane = new JScrollPane(log);
         logScrollPane.setBorder(BorderFactory.createTitledBorder("Messages"));
-        container.add(logScrollPane, gc);
+        logScrollPane.setPreferredSize(new Dimension(10, 60));
+        contentPane.add(logScrollPane, BorderLayout.SOUTH);
+        mainScrollPane.setViewportView(container);
+        contentPane.add(mainScrollPane, BorderLayout.CENTER);
     }
 
     @Override
@@ -1833,7 +1839,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         setAcceptorBeforeButton.setEnabled(true);
                         setAcceptorAfterButton.setEnabled(true);
                     }
-                    logScrollPane.setPreferredSize(new Dimension(10, 10));
                     break;
                 case "donorblcorrm":
                     if (donorBlCorrMenuItem.isSelected()) {
@@ -1841,13 +1846,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         donorBlCorrField.setVisible(true);
                         calculateDBCorrButton.setVisible(true);
                         lineDonorBlCorr.setVisible(true);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                     } else {
                         donorBlCorrLabel.setVisible(false);
                         donorBlCorrField.setVisible(false);
                         calculateDBCorrButton.setVisible(false);
                         lineDonorBlCorr.setVisible(false);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                         if (donorBlCorrDialog != null) {
                             donorBlCorrDialog.setVisible(false);
                             donorBlCorrDialog.dispose();
@@ -1860,13 +1863,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         accCrossTalkCorrField.setVisible(true);
                         calculateAccCTCorrButton.setVisible(true);
                         lineAccCrossTalk.setVisible(true);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                     } else {
                         accCrossTalkCorrLabel.setVisible(false);
                         accCrossTalkCorrField.setVisible(false);
                         calculateAccCTCorrButton.setVisible(false);
                         lineAccCrossTalk.setVisible(false);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                         if (acceptorCTCorrDialog != null) {
                             acceptorCTCorrDialog.setVisible(false);
                             acceptorCTCorrDialog.dispose();
@@ -1879,13 +1880,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         accPhotoprCorrField.setVisible(true);
                         calculateAccPPCorrButton.setVisible(true);
                         lineAccPhotopr.setVisible(true);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                     } else {
                         accPhotoprCorrLabel.setVisible(false);
                         accPhotoprCorrField.setVisible(false);
                         calculateAccPPCorrButton.setVisible(false);
                         lineAccPhotopr.setVisible(false);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                         if (acceptorPPCorrDialog != null) {
                             acceptorPPCorrDialog.setVisible(false);
                             acceptorPPCorrDialog.dispose();
@@ -1898,13 +1897,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         partialBlCorrField.setVisible(true);
                         calculatePartialBlCorrButton.setVisible(true);
                         linePartialBl.setVisible(true);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                     } else {
                         partialBlCorrLabel.setVisible(false);
                         partialBlCorrField.setVisible(false);
                         calculatePartialBlCorrButton.setVisible(false);
                         linePartialBl.setVisible(false);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                     }
                     break;
                 case "calculateDonorBlCorrection":
@@ -2382,7 +2379,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         }
                         nextButton.setVisible(true);
                         useImageStacks.setSelected(true);
-                        logScrollPane.setPreferredSize(new Dimension(10, 10));
                         automaticallyProcessedFiles = chooser.getSelectedFile().listFiles();
                         processFile(0);
                     }
@@ -2479,7 +2475,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         if (currentFile >= automaticallyProcessedFiles.length) {
             log("Processing files has been finished.");
             nextButton.setVisible(false);
-            logScrollPane.setPreferredSize(new Dimension(10, 10));
             IJ.selectWindow("Results");
             currentlyProcessedFile = 0;
             automaticallyProcessedFiles = null;
@@ -2558,7 +2553,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         resetAllButtonColors();
 
         nextButton.setVisible(false);
-        logScrollPane.setPreferredSize(new Dimension(10, 10));
         currentlyProcessedFile = 0;
         automaticallyProcessedFiles = null;
         currentlyProcessedFileName = null;
