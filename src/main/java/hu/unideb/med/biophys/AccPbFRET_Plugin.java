@@ -116,7 +116,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     public JButton calculateDBCorrButton, calculateAccCTCorrButton, calculateAccPPCorrButton, calculatePartialBlCorrButton;
     private JPanel lineDonorBlCorr, lineAccCrossTalk, lineAccPhotopr, linePartialBl;
     private JLabel donorBlCorrLabel, accCrossTalkCorrLabel, accPhotoprCorrLabel, partialBlCorrLabel;
-    private JCheckBox useLsmImages, useAcceptorAsMask, applyShiftCB;
+    private JCheckBox useImageStacks, useAcceptorAsMask, applyShiftCB;
     private JTextPane log;
     private JScrollPane logScrollPane;
     private SimpleDateFormat format;
@@ -278,14 +278,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridy = 0;
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
-        useLsmImages = new JCheckBox("Use LSM", true);
-        useLsmImages.setSelected(false);
-        useLsmImages.setActionCommand("useLsmImages");
-        useLsmImages.addActionListener(this);
-        useLsmImages.setToolTipText("<html>If this checkbox is checked, the LSM image containing donor and<BR>acceptor channel images (both before and after photobleaching)<BR> are set automatically after opening. Every previously opened image<br>window will be closed. The results window can be left opened.</html>");
-        useLsmImages.setSelected(false);
+        useImageStacks = new JCheckBox("Use stack", true);
+        useImageStacks.setSelected(false);
+        useImageStacks.setActionCommand("useImageStacks");
+        useImageStacks.addActionListener(this);
+        useImageStacks.setToolTipText("<html>If this checkbox is checked, the image stack containing donor and<BR>acceptor channel images (both before and after photobleaching)<BR> are set automatically after opening. Every previously opened image<br>window will be closed. The results window can be left opened.</html>");
+        useImageStacks.setSelected(false);
         donorBeforeBleachingPanel.add(new JLabel("Step 1a: open and set the donor before bleaching image  "));
-        donorBeforeBleachingPanel.add(useLsmImages);
+        donorBeforeBleachingPanel.add(useImageStacks);
         setDonorBeforeButton = new JButton("Set image");
         setDonorBeforeButton.setMargin(new Insets(2, 2, 2, 2));
         setDonorBeforeButton.addActionListener(this);
@@ -1082,10 +1082,10 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 case "clearMessages":
                     log.setText("");
                     break;
-                case "openLsmImage": {
+                case "openImageStack": {
                     JFileChooser jfc = new JFileChooser(currentDirectory);
                     jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                    jfc.setDialogTitle("Open LSM image...");
+                    jfc.setDialogTitle("Open Image Stack...");
                     jfc.showOpenDialog(this);
                     if (jfc.getSelectedFile() == null) {
                         return;
@@ -1120,7 +1120,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorBefore"));
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
                     } catch (Exception ex) {
-                        logError("Could not open and set the selected LSM image.");
+                        logError("Could not open and set the selected image stack.");
                         logException(ex.getMessage(), ex);
                     }
                     break;
@@ -1811,10 +1811,10 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         }
                     }
                     break;
-                case "useLsmImages":
-                    if (useLsmImages.isSelected()) {
-                        setDonorBeforeButton.setText("Open & Set LSM");
-                        setDonorBeforeButton.setActionCommand("openLsmImage");
+                case "useImageStacks":
+                    if (useImageStacks.isSelected()) {
+                        setDonorBeforeButton.setText("Open & set stack");
+                        setDonorBeforeButton.setActionCommand("openImageStack");
                         setDonorAfterButton.setEnabled(false);
                         setAcceptorBeforeButton.setEnabled(false);
                         setAcceptorAfterButton.setEnabled(false);
@@ -2373,7 +2373,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             return;
                         }
                         nextButton.setVisible(true);
-                        useLsmImages.setSelected(true);
+                        useImageStacks.setSelected(true);
                         logScrollPane.setPreferredSize(new Dimension(10, 10));
                         automaticallyProcessedFiles = chooser.getSelectedFile().listFiles();
                         processFile(0);
