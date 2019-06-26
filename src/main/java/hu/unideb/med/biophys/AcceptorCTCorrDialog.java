@@ -163,7 +163,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
         gc.gridx = 0;
         gc.gridy = 9;
         gc.gridheight = 1;
-        showCTCImagesCB = new JCheckBox("show correction image (for manual calc.)");
+        showCTCImagesCB = new JCheckBox("Show correction image (for manual calc.)");
         panel.add(showCTCImagesCB, gc);
         gc.gridwidth = 1;
         gc.gridheight = 1;

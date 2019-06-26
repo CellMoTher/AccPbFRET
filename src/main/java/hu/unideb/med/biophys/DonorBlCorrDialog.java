@@ -170,7 +170,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
         gc.gridx = 0;
         gc.gridy = 10;
         gc.gridheight = 1;
-        showBlCImagesCB = new JCheckBox("show correction image (for manual calc.)");
+        showBlCImagesCB = new JCheckBox("Show correction image (for manual calc.)");
         panel.add(showBlCImagesCB, gc);
         gc.gridwidth = 1;
         gc.gridheight = 1;

@@ -75,7 +75,7 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
         gc.insets = new Insets(2, 2, 2, 2);
         gc.gridx = 0;
         gc.gridy = 1;
-        useMainWindowImages = new JCheckBox("use images of the main window (1a/1b)", false);
+        useMainWindowImages = new JCheckBox("Use images of the main window (1a/1b)", false);
         useMainWindowImages.setActionCommand("useMainWindowImages");
         useMainWindowImages.addActionListener(this);
         useMainWindowImages.setToolTipText("<html>If this checkbox is checked, donor before and after bleaching<BR>images which are set in the main window will be used as<BR>image 1 and image 2.</html>");

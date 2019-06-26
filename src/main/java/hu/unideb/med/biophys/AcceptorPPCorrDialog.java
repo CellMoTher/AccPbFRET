@@ -163,7 +163,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
         gc.gridx = 0;
         gc.gridy = 9;
         gc.gridheight = 1;
-        showPPImagesCB = new JCheckBox("show correction image (for manual calc.)");
+        showPPImagesCB = new JCheckBox("Show correction image (for manual calc.)");
         panel.add(showPPImagesCB, gc);
         gc.gridwidth = 1;
         gc.gridheight = 1;

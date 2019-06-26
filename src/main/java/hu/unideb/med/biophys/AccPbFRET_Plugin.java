@@ -278,7 +278,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridy = 0;
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
-        useLsmImages = new JCheckBox("use LSM", true);
+        useLsmImages = new JCheckBox("Use LSM", true);
         useLsmImages.setSelected(false);
         useLsmImages.setActionCommand("useLsmImages");
         useLsmImages.addActionListener(this);
@@ -388,7 +388,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.insets = new Insets(0, 0, 0, 0);
         gc.fill = GridBagConstraints.NONE;
         regPanel.add(new JLabel("Step 2: register donor images  "));
-        applyShiftCB = new JCheckBox("apply shift to acceptor image", true);
+        applyShiftCB = new JCheckBox("Apply shift to acceptor image", true);
         applyShiftCB.setSelected(true);
         regPanel.add(applyShiftCB);
         container.add(regPanel, gc);
@@ -844,7 +844,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
         createFretImgPanel.add(new JLabel("Step 6: create FRET image  "));
-        useAcceptorAsMask = new JCheckBox("use also acceptor before image as mask", true);
+        useAcceptorAsMask = new JCheckBox("Use also acceptor before image as mask", true);
         useAcceptorAsMask.setToolTipText("<html>When calculating intramolecular FRET or intermolecular <br>FRET for one species, the AND of donor before and after <br>images is used as the default mask. If the acceptor label is <br>on another molecular species, the thresholded acceptor <br>image can be AND-ed to this as well.</html>");
         useAcceptorAsMask.setSelected(false);
         createFretImgPanel.add(useAcceptorAsMask);
