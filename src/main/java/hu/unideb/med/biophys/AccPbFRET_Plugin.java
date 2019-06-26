@@ -1121,16 +1121,12 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "split"));
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setAcceptorAfter"));
-                        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorAfter"));
-                        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setAcceptorBefore"));
-                        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorBefore"));
-                        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
                     } catch (Exception ex) {
                         logError("Could not open and set the selected image stack.");
                         logException(ex.getMessage(), ex);
@@ -2500,16 +2496,12 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         WindowManager.putBehind();
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "split"));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setAcceptorAfter"));
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
         WindowManager.putBehind();
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorAfter"));
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
         WindowManager.putBehind();
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setAcceptorBefore"));
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
         WindowManager.putBehind();
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorBefore"));
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "lutSpectrum"));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "registerImages"));
         donorBefore.setRoi(new Roi(0, 0, donorBefore.getWidth() / 6, donorBefore.getHeight() / 6));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "copyRoi"));
