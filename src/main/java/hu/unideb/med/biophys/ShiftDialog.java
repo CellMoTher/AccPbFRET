@@ -40,7 +40,10 @@ public class ShiftDialog extends JDialog implements ActionListener {
 
     private AccPbFRET_Plugin accBlWindow;
     JPanel panel;
-    JButton leftButton, rightButton, upButton, downButton;
+    JButton leftButton;
+    JButton rightButton;
+    JButton upButton;
+    JButton downButton;
     JButton cancelButton = new JButton("Close");
 
     public ShiftDialog(AccPbFRET_Plugin accBlWindow) {

@@ -48,15 +48,24 @@ import javax.swing.JRadioButton;
 public class DonorBlCorrDialog extends JDialog implements ActionListener {
 
     private AccPbFRET_Plugin accBlWindow;
-    private ImagePlus donorCBefore, donorCAfter;
+    private ImagePlus donorCBefore;
+    private ImagePlus donorCAfter;
     private JPanel panel;
-    private JButton setBeforeButton, setAfterButton, registerButton;
-    private JButton setBeforeThresholdButton, setAfterThresholdButton, calculateButton, setButton;
-    private JButton subtractBeforeButton, subtractAfterButton;
+    private JButton setBeforeButton;
+    private JButton setAfterButton;
+    private JButton registerButton;
+    private JButton setBeforeThresholdButton;
+    private JButton setAfterThresholdButton;
+    private JButton calculateButton;
+    private JButton setButton;
+    private JButton subtractBeforeButton;
+    private JButton subtractAfterButton;
     private JButton resetButton;
     private ButtonGroup buttonGroup;
-    private JRadioButton averagesButton, quotientsButton;
-    private JLabel mode1ResultLabel, mode2ResultLabel;
+    private JRadioButton averagesButton;
+    private JRadioButton quotientsButton;
+    private JLabel mode1ResultLabel;
+    private JLabel mode2ResultLabel;
     private JCheckBox showBlCImagesCB;
 
     public DonorBlCorrDialog(AccPbFRET_Plugin accBlWindow) {

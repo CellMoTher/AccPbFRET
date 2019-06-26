@@ -43,9 +43,12 @@ import javax.swing.JPanel;
 public class CalculateImgRatioDialog extends JDialog implements ActionListener {
 
     private AccPbFRET_Plugin accBlWindow;
-    private ImagePlus firstImg, secondImg;
+    private ImagePlus firstImg;
+    private ImagePlus secondImg;
     private JPanel panel;
-    private JButton setFirstImgButton, setSecondImgButton, createRatioImageButton;
+    private JButton setFirstImgButton;
+    private JButton setSecondImgButton;
+    private JButton createRatioImageButton;
     private JCheckBox useMainWindowImages;
 
     public CalculateImgRatioDialog(AccPbFRET_Plugin accBlWindow) {

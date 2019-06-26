@@ -42,9 +42,12 @@ import javax.swing.JPanel;
 public class ApplyMaskDialog extends JDialog implements ActionListener {
 
     private AccPbFRET_Plugin accBlWindow;
-    private ImagePlus toMaskImg, maskImg;
+    private ImagePlus toMaskImg;
+    private ImagePlus maskImg;
     private JPanel panel;
-    private JButton setToMaskImgButton, setMaskImgButton, createImagesButton;
+    private JButton setToMaskImgButton;
+    private JButton setMaskImgButton;
+    private JButton createImagesButton;
 
     public ApplyMaskDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Apply Mask to An Image");

@@ -47,15 +47,23 @@ import javax.swing.JRadioButton;
 public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
 
     private AccPbFRET_Plugin accBlWindow;
-    private ImagePlus donorCBefore, acceptorCBefore;
+    private ImagePlus donorCBefore;
+    private ImagePlus acceptorCBefore;
     private JPanel panel;
-    private JButton setDonorBeforeButton, setAcceptorBeforeButton;
-    private JButton setDonorBeforeThresholdButton, setAcceptorBeforeThresholdButton, calculateButton, setButton;
-    private JButton subtractDonorBeforeButton, subtractAcceptorBeforeButton;
+    private JButton setDonorBeforeButton;
+    private JButton setAcceptorBeforeButton;
+    private JButton setDonorBeforeThresholdButton;
+    private JButton setAcceptorBeforeThresholdButton;
+    private JButton calculateButton;
+    private JButton setButton;
+    private JButton subtractDonorBeforeButton;
+    private JButton subtractAcceptorBeforeButton;
     private JButton resetButton;
     private ButtonGroup buttonGroup;
-    private JRadioButton averagesButton, quotientsButton;
-    private JLabel mode1ResultLabel, mode2ResultLabel;
+    private JRadioButton averagesButton;
+    private JRadioButton quotientsButton;
+    private JLabel mode1ResultLabel;
+    private JLabel mode2ResultLabel;
     private JCheckBox showCTCImagesCB;
 
     public AcceptorCTCorrDialog(AccPbFRET_Plugin accBlWindow) {
