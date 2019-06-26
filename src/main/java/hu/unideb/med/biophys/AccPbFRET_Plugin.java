@@ -168,6 +168,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private JTextField partialBlCorrField;
     private JButton registerButton;
     private JButton createButton;
+    private JButton saveButton;
     private JButton measureButton;
     private JButton nextButton;
     private JButton closeImagesButton;
@@ -926,7 +927,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridy = 31;
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
-        createFretImgPanel.add(new JLabel("Step 6: create FRET image  "));
+        createFretImgPanel.add(new JLabel("Step 6a: create FRET image  "));
         useAcceptorAsMask = new JCheckBox("Use also acceptor before image as mask", true);
         useAcceptorAsMask.setToolTipText("<html>When calculating intramolecular FRET or intermolecular <br>FRET for one species, the AND of donor before and after <br>images is used as the default mask. If the acceptor label is <br>on another molecular species, the thresholded acceptor <br>image can be AND-ed to this as well.</html>");
         useAcceptorAsMask.setSelected(false);
@@ -941,9 +942,26 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridy = 31;
         container.add(createButton, gc);
 
-        gc.gridwidth = GridBagConstraints.REMAINDER;
+        JPanel saveFretImgPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+        gc.gridwidth = 10;
         gc.gridx = 0;
         gc.gridy = 32;
+        gc.insets = new Insets(2, 2, 2, 2);
+        gc.fill = GridBagConstraints.NONE;
+        saveFretImgPanel.add(new JLabel("Step 6b: save FRET image as TIFF"));
+        container.add(saveFretImgPanel, gc);
+        saveButton = new JButton("Save");
+        saveButton.addActionListener(this);
+        saveButton.setActionCommand("saveFretImage");
+        gc.fill = GridBagConstraints.HORIZONTAL;
+        gc.gridwidth = GridBagConstraints.REMAINDER;
+        gc.gridx = 10;
+        gc.gridy = 32;
+        container.add(saveButton, gc);
+
+        gc.gridwidth = GridBagConstraints.REMAINDER;
+        gc.gridx = 0;
+        gc.gridy = 33;
         JPanel line7 = new JPanel();
         line7.setPreferredSize(new Dimension(windowWidth - 35, 1));
         line7.setBackground(Color.lightGray);
@@ -951,7 +969,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 33;
+        gc.gridy = 34;
         container.add(new JLabel("Step 7: select ROIs and make measurements"), gc);
         gc.gridx = 9;
         gc.gridwidth = 1;
@@ -967,14 +985,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         measureButton.addActionListener(this);
         measureButton.setActionCommand("measureFretImage");
         gc.gridx = 10;
-        gc.gridy = 33;
+        gc.gridy = 34;
         container.add(measureButton, gc);
         nextButton = new JButton("Next");
         nextButton.setMargin(new Insets(2, 2, 2, 2));
         nextButton.addActionListener(this);
         nextButton.setActionCommand("nextImage");
         gc.gridx = 11;
-        gc.gridy = 33;
+        gc.gridy = 34;
         container.add(nextButton, gc);
         nextButton.setVisible(false);
 
@@ -2325,6 +2343,18 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         acceptorAfter.changes = false;
                     }
                     break;
+                case "saveFretImage": {
+                    if (transferImage == null) {
+                        logError("Transfer (FRET) image is required.");
+                        return;
+                    }
+                    FileSaver fs = new FileSaver(transferImage);
+                    if (fs.saveAsTiff()) {
+                        log("Saved " + transferImage.getTitle() + ".");
+                    }
+                    transferImage.updateAndDraw();
+                    break;
+                }
                 case "measureFretImage": {
                     float donorBlCorr = 1;
                     float acceptorCTCorr = 0;
