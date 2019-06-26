@@ -2345,17 +2345,17 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 }
                 case "semiAutomaticProcessing":
                     int choice = JOptionPane.showConfirmDialog(this, "Semi-automatic processing of images\n\nOpens and processes FRET images in a given directory. It works with\n"
-                            + "Zeiss LSM images (tested with LSM 510 Version 4.0), which contain two\n"
-                            + "channels:\n"
+                            + "Zeiss CZI and LSM images (tested with LSM 880/ZEN 2.1 SP1 (black) Version 12.0.0.0),\n"
+                            + "which contain two channels:\n"
                             + "1. donor channel (before and after photobleaching)\n"
                             + "2. acceptor channel (before and after photobleaching)\n\n"
                             + "The upper left corner (1/6 x 1/6 of the image) is considered as background.\n"
                             + "Threshold settings, creation of FRET image and measurements have to be\n"
                             + "made manually.\n\n"
                             + "Every previously opened image and result window will be closed when you\n"
-                            + "press \"Ok\".\n\n"
-                            + "Press \"Ok\" to select the directory. To continue with the next "
-                            + "image, do\nnot close any windows, just press the \"Next\" button.\n", "Semi-automatic processing of images", JOptionPane.OK_CANCEL_OPTION);
+                            + "click OK.\n\n"
+                            + "Click OK to select the directory. To continue with the next "
+                            + "image, do\nnot close any windows, just click the Next button.\n", "Semi-Automatic Processing of Images", JOptionPane.OK_CANCEL_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
                         currentlyProcessedFile = 0;
                         automaticallyProcessedFiles = null;
