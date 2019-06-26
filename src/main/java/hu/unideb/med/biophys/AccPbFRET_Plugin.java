@@ -2503,6 +2503,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         WindowManager.putBehind();
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setDonorBefore"));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "registerImages"));
+        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothDBefore"));
+        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothDAfter"));
+        if (partialBlCorrMenuItem.isSelected()) {
+            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothABefore"));
+            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothAAfter"));
+        } else if (useAcceptorAsMask.isSelected()) {
+            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothABefore"));
+        }
         donorBefore.setRoi(new Roi(0, 0, donorBefore.getWidth() / 6, donorBefore.getHeight() / 6));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "copyRoi"));
         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "subtractDonorBefore"));
@@ -2535,14 +2543,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             acceptorAfter.killRoi();
         } else if (useAcceptorAsMask.isSelected()) {
             acceptorBefore.killRoi();
-        }
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothDBefore"));
-        this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothDAfter"));
-        if (partialBlCorrMenuItem.isSelected()) {
-            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothABefore"));
-            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothAAfter"));
-        } else if (useAcceptorAsMask.isSelected()) {
-            this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "smoothABefore"));
         }
     }
 
