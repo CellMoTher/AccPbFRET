@@ -2478,7 +2478,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             currentlyProcessedFileName = null;
             return;
         }
-        if (!automaticallyProcessedFiles[currentFile].isFile() || !(automaticallyProcessedFiles[currentFile].getName().endsWith(".lsm") || automaticallyProcessedFiles[currentFile].getName().endsWith(".LSM"))) {
+        if (!automaticallyProcessedFiles[currentFile].isFile() || !(automaticallyProcessedFiles[currentFile].getName().endsWith(".lsm") || automaticallyProcessedFiles[currentFile].getName().endsWith(".LSM") || automaticallyProcessedFiles[currentFile].getName().endsWith(".czi") || automaticallyProcessedFiles[currentFile].getName().endsWith(".CZI"))) {
             processFile(++currentlyProcessedFile);
             return;
         }
