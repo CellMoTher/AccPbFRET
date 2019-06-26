@@ -1138,7 +1138,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     }
                     FileSaver fs = new FileSaver(image);
                     if (fs.saveAsTiff()) {
-                        log("Tiff file is saved.");
+                        log("Saved " + image.getTitle() + ".");
                     }
                     image.updateAndDraw();
                     break;
@@ -1151,7 +1151,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     }
                     FileSaver fs = new FileSaver(image);
                     if (fs.saveAsBmp()) {
-                        log("Bmp file is saved.");
+                        log("Saved " + image.getTitle() + ".");
                     }
                     image.updateAndDraw();
                     break;
