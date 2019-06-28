@@ -1179,9 +1179,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         }
                     }
                     try {
-                        BufferedWriter out = new BufferedWriter(new FileWriter(jfc.getSelectedFile().getAbsolutePath()));
-                        out.write(log.getText());
-                        out.close();
+                        try (BufferedWriter out = new BufferedWriter(new FileWriter(jfc.getSelectedFile().getAbsolutePath()))) {
+                            out.write(log.getText());
+                        }
                     } catch (IOException ioe) {
                         logError("Could not save messages.");
                     }
