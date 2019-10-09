@@ -498,10 +498,13 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         return;
                     } else {
                         FHT fht1 = new FHT(donorCBefore.getProcessor().duplicate());
+                        fht1.setShowProgress(false);
                         fht1.transform();
                         FHT fht2 = new FHT(donorCAfter.getProcessor().duplicate());
+                        fht2.setShowProgress(false);
                         fht2.transform();
                         FHT res = fht1.conjugateMultiply(fht2);
+                        res.setShowProgress(false);
                         res.inverseTransform();
                         ImagePlus image = new ImagePlus("Result of registration", res);
                         ImageProcessor ip = image.getProcessor();
