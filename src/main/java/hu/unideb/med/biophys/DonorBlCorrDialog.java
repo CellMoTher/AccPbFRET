@@ -58,6 +58,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
     private JButton setAfterThresholdButton;
     private JButton calculateButton;
     private JButton setButton;
+    private JButton copyRoiButton;
     private JButton subtractBeforeButton;
     private JButton subtractAfterButton;
     private JButton resetButton;
@@ -75,7 +76,11 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
         setModal(false);
         createDialogGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(300, 410);
+        if (IJ.isMacOSX()) {
+            setSize(320, 450);
+        } else {
+            setSize(300, 445);
+        }
         setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
@@ -114,30 +119,36 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
         panel.add(registerButton, gc);
         gc.gridx = 0;
         gc.gridy = 4;
+        copyRoiButton = new JButton("(Optional:) Copy background ROI");
+        copyRoiButton.addActionListener(this);
+        copyRoiButton.setActionCommand("copyRoi");
+        panel.add(copyRoiButton, gc);
+        gc.gridx = 0;
+        gc.gridy = 5;
         subtractBeforeButton = new JButton("Subtract background of donor before");
         subtractBeforeButton.addActionListener(this);
         subtractBeforeButton.setActionCommand("subtractCBefore");
         panel.add(subtractBeforeButton, gc);
         gc.gridx = 0;
-        gc.gridy = 5;
+        gc.gridy = 6;
         subtractAfterButton = new JButton("Subtract background of donor after");
         subtractAfterButton.addActionListener(this);
         subtractAfterButton.setActionCommand("subtractCAfter");
         panel.add(subtractAfterButton, gc);
         gc.gridx = 0;
-        gc.gridy = 6;
+        gc.gridy = 7;
         setBeforeThresholdButton = new JButton("Set donor before threshold");
         setBeforeThresholdButton.addActionListener(this);
         setBeforeThresholdButton.setActionCommand("setCBeforeThreshold");
         panel.add(setBeforeThresholdButton, gc);
         gc.gridx = 0;
-        gc.gridy = 7;
+        gc.gridy = 8;
         setAfterThresholdButton = new JButton("Set donor after threshold");
         setAfterThresholdButton.addActionListener(this);
         setAfterThresholdButton.setActionCommand("setCAfterThreshold");
         panel.add(setAfterThresholdButton, gc);
         gc.gridx = 0;
-        gc.gridy = 8;
+        gc.gridy = 9;
         gc.gridheight = 2;
         JPanel radioPanel = new JPanel();
         GridBagLayout gbl = new GridBagLayout();
@@ -177,26 +188,26 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
         radioPanel.add(mode2ResultLabel, gcr);
         panel.add(radioPanel, gc);
         gc.gridx = 0;
-        gc.gridy = 10;
+        gc.gridy = 11;
         gc.gridheight = 1;
         showBlCImagesCB = new JCheckBox("Show correction image (for manual calc.)");
         panel.add(showBlCImagesCB, gc);
         gc.gridwidth = 1;
         gc.gridheight = 1;
         gc.gridx = 0;
-        gc.gridy = 11;
+        gc.gridy = 12;
         calculateButton = new JButton("Calculate");
         calculateButton.addActionListener(this);
         calculateButton.setActionCommand("calculate");
         panel.add(calculateButton, gc);
         gc.gridx = 1;
-        gc.gridy = 11;
+        gc.gridy = 12;
         setButton = new JButton("Set selected");
         setButton.addActionListener(this);
         setButton.setActionCommand("setfactor");
         panel.add(setButton, gc);
         gc.gridx = 2;
-        gc.gridy = 11;
+        gc.gridy = 12;
         resetButton = new JButton("Reset");
         resetButton.addActionListener(this);
         resetButton.setActionCommand("reset");
@@ -239,6 +250,9 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     registerButton.setBackground(accBlWindow.originalButtonColor);
                     registerButton.setOpaque(false);
                     registerButton.setBorderPainted(true);
+                    copyRoiButton.setBackground(accBlWindow.originalButtonColor);
+                    copyRoiButton.setOpaque(false);
+                    copyRoiButton.setBorderPainted(true);
                     mode1ResultLabel.setText("");
                     mode2ResultLabel.setText("");
                     break;
@@ -295,6 +309,24 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     setAfterButton.setBackground(accBlWindow.greenColor);
                     setAfterButton.setOpaque(true);
                     setAfterButton.setBorderPainted(false);
+                    break;
+                case "copyRoi":
+                    if (donorCBefore == null) {
+                        accBlWindow.logError("No image is set as donor before bleaching.");
+                        return;
+                    }
+                    if (donorCBefore.getRoi() != null) {
+                        if (donorCAfter != null) {
+                            donorCAfter.setRoi(donorCBefore.getRoi());
+                        }
+                    } else {
+                        if (donorCAfter != null) {
+                            donorCAfter.killRoi();
+                        }
+                    }
+                    copyRoiButton.setBackground(accBlWindow.greenColor);
+                    copyRoiButton.setOpaque(true);
+                    copyRoiButton.setBorderPainted(false);
                     break;
                 case "subtractCBefore": {
                     if (donorCBefore == null) {
