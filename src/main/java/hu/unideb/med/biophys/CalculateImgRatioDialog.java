@@ -73,7 +73,7 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
         gc.gridwidth = 2;
         gc.gridx = 0;
         gc.gridy = 0;
-        JLabel infoLabel = new JLabel("<html><center>After setting the two images and pressing the \"Create ratio image\" button, the ratio of the images (image 1 / image 2) will be calculated pixel-by-pixel and displayed as a new 32 bit image.</center></html>");
+        JLabel infoLabel = new JLabel("<html><center>After setting the two images and pressing the \"Create ratio image\" button, the ratio of the images (image 1 / image 2) will be calculated pixel-by-pixel and displayed as a new 32-bit image.</center></html>");
         panel.add(infoLabel, gc);
         gc.insets = new Insets(2, 2, 2, 2);
         gc.gridx = 0;
