@@ -115,6 +115,8 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
                     toMaskImg.setTitle("Image to mask - " + new Date().toString());
                     new ImageConverter(toMaskImg).convertToGray32();
                     setToMaskImgButton.setBackground(accBlWindow.greenColor);
+                    setToMaskImgButton.setOpaque(true);
+                    setToMaskImgButton.setBorderPainted(false);
                     break;
                 case "setMaskImage":
                     maskImg = WindowManager.getCurrentImage();
@@ -134,6 +136,8 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
                     maskImg.setTitle("Mask image - " + new Date().toString());
                     new ImageConverter(maskImg).convertToGray32();
                     setMaskImgButton.setBackground(accBlWindow.greenColor);
+                    setMaskImgButton.setOpaque(true);
+                    setMaskImgButton.setBorderPainted(false);
                     break;
                 case "createImages":
                     if (toMaskImg == null) {

@@ -204,14 +204,32 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     donorCBefore = null;
                     donorCAfter = null;
                     setBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                    setBeforeButton.setOpaque(false);
+                    setBeforeButton.setBorderPainted(true);
                     setAfterButton.setBackground(accBlWindow.originalButtonColor);
+                    setAfterButton.setOpaque(false);
+                    setAfterButton.setBorderPainted(true);
                     setBeforeThresholdButton.setBackground(accBlWindow.originalButtonColor);
+                    setBeforeThresholdButton.setOpaque(false);
+                    setBeforeThresholdButton.setBorderPainted(true);
                     setAfterThresholdButton.setBackground(accBlWindow.originalButtonColor);
+                    setAfterThresholdButton.setOpaque(false);
+                    setAfterThresholdButton.setBorderPainted(true);
                     calculateButton.setBackground(accBlWindow.originalButtonColor);
+                    calculateButton.setOpaque(false);
+                    calculateButton.setBorderPainted(true);
                     setButton.setBackground(accBlWindow.originalButtonColor);
+                    setButton.setOpaque(false);
+                    setButton.setBorderPainted(true);
                     subtractBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                    subtractBeforeButton.setOpaque(false);
+                    subtractBeforeButton.setBorderPainted(true);
                     subtractAfterButton.setBackground(accBlWindow.originalButtonColor);
+                    subtractAfterButton.setOpaque(false);
+                    subtractAfterButton.setBorderPainted(true);
                     registerButton.setBackground(accBlWindow.originalButtonColor);
+                    registerButton.setOpaque(false);
+                    registerButton.setBorderPainted(true);
                     mode1ResultLabel.setText("");
                     mode2ResultLabel.setText("");
                     break;
@@ -239,6 +257,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     donorCBefore.setTitle("Donor before bleaching (bl. corr.) - " + new Date().toString());
                     new ImageConverter(donorCBefore).convertToGray32();
                     setBeforeButton.setBackground(accBlWindow.greenColor);
+                    setBeforeButton.setOpaque(true);
+                    setBeforeButton.setBorderPainted(false);
                     break;
                 case "setCAfter":
                     donorCAfter = WindowManager.getCurrentImage();
@@ -264,6 +284,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     donorCAfter.setTitle("Donor after bleaching (bl. corr.) - " + new Date().toString());
                     new ImageConverter(donorCAfter).convertToGray32();
                     setAfterButton.setBackground(accBlWindow.greenColor);
+                    setAfterButton.setOpaque(true);
+                    setAfterButton.setBorderPainted(false);
                     break;
                 case "subtractCBefore": {
                     if (donorCBefore == null) {
@@ -299,6 +321,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     donorCBefore.killRoi();
                     accBlWindow.log("Subtracted background (" + backgroundAvgDB + ") of donor before bleaching. (bl. corr.)");
                     subtractBeforeButton.setBackground(accBlWindow.greenColor);
+                    subtractBeforeButton.setOpaque(true);
+                    subtractBeforeButton.setBorderPainted(false);
                     break;
                 }
                 case "subtractCAfter": {
@@ -335,6 +359,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     donorCAfter.killRoi();
                     accBlWindow.log("Subtracted background (" + backgroundAvgDA + ") of donor after bleaching. (bl. corr.)");
                     subtractAfterButton.setBackground(accBlWindow.greenColor);
+                    subtractAfterButton.setOpaque(true);
+                    subtractAfterButton.setBorderPainted(false);
                     break;
                 }
                 case "setCBeforeThreshold":
@@ -345,6 +371,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     IJ.selectWindow(donorCBefore.getTitle());
                     IJ.run("Threshold...");
                     setBeforeThresholdButton.setBackground(accBlWindow.greenColor);
+                    setBeforeThresholdButton.setOpaque(true);
+                    setBeforeThresholdButton.setBorderPainted(false);
                     break;
                 case "setCAfterThreshold":
                     if (donorCAfter == null) {
@@ -354,6 +382,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                     IJ.selectWindow(donorCAfter.getTitle());
                     IJ.run("Threshold...");
                     setAfterThresholdButton.setBackground(accBlWindow.greenColor);
+                    setAfterThresholdButton.setOpaque(true);
+                    setAfterThresholdButton.setBorderPainted(false);
                     break;
                 case "calculate":
                     if (donorCBefore == null) {
@@ -413,6 +443,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         avgAfter = sumc / countc;
                         mode2ResultLabel.setText(df.format((float) (avgBefore / avgAfter)).toString());
                         calculateButton.setBackground(accBlWindow.greenColor);
+                        calculateButton.setOpaque(true);
+                        calculateButton.setBorderPainted(false);
                         donorCBefore.changes = false;
                         donorCAfter.changes = false;
                         if (showBlCImagesCB.isSelected()) {
@@ -429,7 +461,11 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         }
                         accBlWindow.setBleachingCorrection(mode1ResultLabel.getText());
                         setButton.setBackground(accBlWindow.greenColor);
+                        setButton.setOpaque(true);
+                        setButton.setBorderPainted(false);
                         accBlWindow.calculateDBCorrButton.setBackground(accBlWindow.greenColor);
+                        accBlWindow.calculateDBCorrButton.setOpaque(true);
+                        accBlWindow.calculateDBCorrButton.setBorderPainted(false);
                     } else {
                         if (mode2ResultLabel.getText().equals("")) {
                             accBlWindow.logError("The correction factor has to be calculated before setting it. (bl. corr.)");
@@ -437,7 +473,11 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         }
                         accBlWindow.setBleachingCorrection(mode2ResultLabel.getText());
                         setButton.setBackground(accBlWindow.greenColor);
+                        setButton.setOpaque(true);
+                        setButton.setBorderPainted(false);
                         accBlWindow.calculateDBCorrButton.setBackground(accBlWindow.greenColor);
+                        accBlWindow.calculateDBCorrButton.setOpaque(true);
+                        accBlWindow.calculateDBCorrButton.setBorderPainted(false);
                     }
                     break;
                 case "registerCImages":
@@ -492,6 +532,8 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         } else {
                             accBlWindow.log("Registration finished. Maximum: x=" + maxx + " y=" + maxy + " (bl. corr.)");
                             registerButton.setBackground(accBlWindow.greenColor);
+                            registerButton.setOpaque(true);
+                            registerButton.setBorderPainted(false);
                         }
                     }
                     break;

@@ -197,13 +197,29 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     donorCAfter = null;
                     acceptorCBefore = null;
                     setDonorAfterButton.setBackground(accBlWindow.originalButtonColor);
+                    setDonorAfterButton.setOpaque(false);
+                    setDonorAfterButton.setBorderPainted(true);
                     setAcceptorBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                    setAcceptorBeforeButton.setOpaque(false);
+                    setAcceptorBeforeButton.setBorderPainted(true);
                     setDonorAfterThresholdButton.setBackground(accBlWindow.originalButtonColor);
+                    setDonorAfterThresholdButton.setOpaque(false);
+                    setDonorAfterThresholdButton.setBorderPainted(true);
                     setAcceptorBeforeThresholdButton.setBackground(accBlWindow.originalButtonColor);
+                    setAcceptorBeforeThresholdButton.setOpaque(false);
+                    setAcceptorBeforeThresholdButton.setBorderPainted(true);
                     calculateButton.setBackground(accBlWindow.originalButtonColor);
+                    calculateButton.setOpaque(false);
+                    calculateButton.setBorderPainted(true);
                     setButton.setBackground(accBlWindow.originalButtonColor);
+                    setButton.setOpaque(false);
+                    setButton.setBorderPainted(true);
                     subtractDonorAfterButton.setBackground(accBlWindow.originalButtonColor);
+                    subtractDonorAfterButton.setOpaque(false);
+                    subtractDonorAfterButton.setBorderPainted(true);
                     subtractAcceptorBeforeButton.setBackground(accBlWindow.originalButtonColor);
+                    subtractAcceptorBeforeButton.setOpaque(false);
+                    subtractAcceptorBeforeButton.setBorderPainted(true);
                     mode1ResultLabel.setText("");
                     mode2ResultLabel.setText("");
                     break;
@@ -231,6 +247,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     donorCAfter.setTitle("Donor after bleaching (pp. corr.) - " + new Date().toString());
                     new ImageConverter(donorCAfter).convertToGray32();
                     setDonorAfterButton.setBackground(accBlWindow.greenColor);
+                    setDonorAfterButton.setOpaque(true);
+                    setDonorAfterButton.setBorderPainted(false);
                     break;
                 case "setAcceptorCBefore":
                     acceptorCBefore = WindowManager.getCurrentImage();
@@ -256,6 +274,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     acceptorCBefore.setTitle("Acceptor before bleaching (pp. corr.) - " + new Date().toString());
                     new ImageConverter(acceptorCBefore).convertToGray32();
                     setAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
+                    setAcceptorBeforeButton.setOpaque(true);
+                    setAcceptorBeforeButton.setBorderPainted(false);
                     break;
                 case "subtractDonorCAfter": {
                     if (donorCAfter == null) {
@@ -291,6 +311,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     donorCAfter.killRoi();
                     accBlWindow.log("Subtracted background (" + backgroundAvgDB + ") of donor after bleaching. (pp. corr.)");
                     subtractDonorAfterButton.setBackground(accBlWindow.greenColor);
+                    subtractDonorAfterButton.setOpaque(true);
+                    subtractDonorAfterButton.setBorderPainted(false);
                     break;
                 }
                 case "subtractAcceptorCBefore": {
@@ -327,6 +349,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     acceptorCBefore.killRoi();
                     accBlWindow.log("Subtracted background (" + backgroundAvgDA + ") of acceptor before bleaching. (pp. corr.)");
                     subtractAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
+                    subtractAcceptorBeforeButton.setOpaque(true);
+                    subtractAcceptorBeforeButton.setBorderPainted(false);
                     break;
                 }
                 case "setDonorCAfterThreshold":
@@ -337,6 +361,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     IJ.selectWindow(donorCAfter.getTitle());
                     IJ.run("Threshold...");
                     setDonorAfterThresholdButton.setBackground(accBlWindow.greenColor);
+                    setDonorAfterThresholdButton.setOpaque(true);
+                    setDonorAfterThresholdButton.setBorderPainted(false);
                     break;
                 case "setAcceptorCBeforeThreshold":
                     if (acceptorCBefore == null) {
@@ -346,6 +372,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                     IJ.selectWindow(acceptorCBefore.getTitle());
                     IJ.run("Threshold...");
                     setAcceptorBeforeThresholdButton.setBackground(accBlWindow.greenColor);
+                    setAcceptorBeforeThresholdButton.setOpaque(true);
+                    setAcceptorBeforeThresholdButton.setBorderPainted(false);
                     break;
                 case "calculate":
                     if (donorCAfter == null) {
@@ -405,6 +433,8 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         avgAcceptorBefore = sumc / countc;
                         mode2ResultLabel.setText(df.format((float) (avgDonorAfter / avgAcceptorBefore)).toString());
                         calculateButton.setBackground(accBlWindow.greenColor);
+                        calculateButton.setOpaque(true);
+                        calculateButton.setBorderPainted(false);
                         donorCAfter.changes = false;
                         acceptorCBefore.changes = false;
                         if (showPPImagesCB.isSelected()) {
@@ -421,7 +451,11 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         }
                         accBlWindow.setPhotoproductCorrection(mode1ResultLabel.getText());
                         setButton.setBackground(accBlWindow.greenColor);
+                        setButton.setOpaque(true);
+                        setButton.setBorderPainted(false);
                         accBlWindow.calculateAccPPCorrButton.setBackground(accBlWindow.greenColor);
+                        accBlWindow.calculateAccPPCorrButton.setOpaque(true);
+                        accBlWindow.calculateAccPPCorrButton.setBorderPainted(false);
                     } else {
                         if (mode2ResultLabel.getText().equals("")) {
                             accBlWindow.logError("The correction factor has to be calculated before setting it. (pp. corr.)");
@@ -429,7 +463,11 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         }
                         accBlWindow.setPhotoproductCorrection(mode2ResultLabel.getText());
                         setButton.setBackground(accBlWindow.greenColor);
+                        setButton.setOpaque(true);
+                        setButton.setBorderPainted(false);
                         accBlWindow.calculateAccPPCorrButton.setBackground(accBlWindow.greenColor);
+                        accBlWindow.calculateAccPPCorrButton.setOpaque(true);
+                        accBlWindow.calculateAccPPCorrButton.setBorderPainted(false);
                     }
                     break;
                 default:

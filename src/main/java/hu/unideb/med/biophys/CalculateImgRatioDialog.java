@@ -124,6 +124,8 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
                     firstImg.setTitle("Image 1 - " + new Date().toString());
                     new ImageConverter(firstImg).convertToGray32();
                     setFirstImgButton.setBackground(accBlWindow.greenColor);
+                    setFirstImgButton.setOpaque(true);
+                    setFirstImgButton.setBorderPainted(false);
                     break;
                 case "setSecondImage":
                     secondImg = WindowManager.getCurrentImage();
@@ -143,6 +145,8 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
                     secondImg.setTitle("Image 2 - " + new Date().toString());
                     new ImageConverter(secondImg).convertToGray32();
                     setSecondImgButton.setBackground(accBlWindow.greenColor);
+                    setSecondImgButton.setOpaque(true);
+                    setSecondImgButton.setBorderPainted(false);
                     break;
                 case "useMainWindowImages":
                     if (useMainWindowImages.isSelected()) {

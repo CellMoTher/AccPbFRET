@@ -1130,23 +1130,31 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     if (ip == null) {
                         logError("No image is selected.");
                         setDonorBeforeButton.setBackground(originalButtonColor);
+                        setDonorBeforeButton.setOpaque(false);
+                        setDonorBeforeButton.setBorderPainted(true);
                         return;
                     }
                     if (ip.getNChannels() > 1) {
                         logError("Current image contains more than 1 channel (" + ip.getNChannels() + "). Please use: Image menu -> Split image.");
                         donorBefore = null;
                         setDonorBeforeButton.setBackground(originalButtonColor);
+                        setDonorBeforeButton.setOpaque(false);
+                        setDonorBeforeButton.setBorderPainted(true);
                         return;
                     } else if (ip.getNSlices() > 1) {
                         logError("Current image contains more than 1 slice (" + ip.getNSlices() + "). Please use: Image menu -> Split image.");
                         donorBefore = null;
                         setDonorBeforeButton.setBackground(originalButtonColor);
+                        setDonorBeforeButton.setOpaque(false);
+                        setDonorBeforeButton.setBorderPainted(true);
                         return;
                     }
                     if (ip != null && donorAfter != null && ip.equals(donorAfter)) {
                         logError("The two donor images must not be the same. Please select and set an other image.");
                         donorBefore = null;
                         setDonorBeforeButton.setBackground(originalButtonColor);
+                        setDonorBeforeButton.setOpaque(false);
+                        setDonorBeforeButton.setBorderPainted(true);
                         return;
                     }
                     donorBefore = ip;
@@ -1156,6 +1164,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         currentlyProcessedFileName = null;
                     }
                     setDonorBeforeButton.setBackground(greenColor);
+                    setDonorBeforeButton.setOpaque(true);
+                    setDonorBeforeButton.setBorderPainted(false);
                     break;
                 }
                 case "setDonorAfter": {
@@ -1163,29 +1173,39 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     if (ip == null) {
                         logError("No image is selected.");
                         setDonorAfterButton.setBackground(originalButtonColor);
+                        setDonorAfterButton.setOpaque(false);
+                        setDonorAfterButton.setBorderPainted(true);
                         return;
                     }
                     if (ip.getNChannels() > 1) {
                         logError("Current image contains more than 1 channel (" + ip.getNChannels() + "). Please split it into parts.");
                         donorAfter = null;
                         setDonorAfterButton.setBackground(originalButtonColor);
+                        setDonorAfterButton.setOpaque(false);
+                        setDonorAfterButton.setBorderPainted(true);
                         return;
                     } else if (ip.getNSlices() > 1) {
                         logError("Current image contains more than 1 slice (" + ip.getNSlices() + "). Please split it into parts.");
                         donorAfter = null;
                         setDonorAfterButton.setBackground(originalButtonColor);
+                        setDonorAfterButton.setOpaque(false);
+                        setDonorAfterButton.setBorderPainted(true);
                         return;
                     }
                     if (donorBefore != null && ip != null && donorBefore.equals(ip)) {
                         logError("The two donor images must not be the same. Please select and set an other image.");
                         donorAfter = null;
                         setDonorAfterButton.setBackground(originalButtonColor);
+                        setDonorAfterButton.setOpaque(false);
+                        setDonorAfterButton.setBorderPainted(true);
                         return;
                     }
                     donorAfter = ip;
                     donorAfter.setTitle("Donor after bleaching - " + new Date().toString());
                     new ImageConverter(donorAfter).convertToGray32();
                     setDonorAfterButton.setBackground(greenColor);
+                    setDonorAfterButton.setOpaque(true);
+                    setDonorAfterButton.setBorderPainted(false);
                     break;
                 }
                 case "setAcceptorBefore":
@@ -1193,46 +1213,62 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     if (acceptorBefore == null) {
                         logError("No image is selected.");
                         setAcceptorBeforeButton.setBackground(originalButtonColor);
+                        setAcceptorBeforeButton.setOpaque(false);
+                        setAcceptorBeforeButton.setBorderPainted(true);
                         return;
                     }
                     if (acceptorBefore.getNChannels() > 1) {
                         logError("Current image contains more than 1 channel (" + acceptorBefore.getNChannels() + "). Please split it into parts.");
                         acceptorBefore = null;
                         setAcceptorBeforeButton.setBackground(originalButtonColor);
+                        setAcceptorBeforeButton.setOpaque(false);
+                        setAcceptorBeforeButton.setBorderPainted(true);
                         return;
                     } else if (acceptorBefore.getNSlices() > 1) {
                         logError("Current image contains more than 1 slice (" + acceptorBefore.getNSlices() + "). Please split it into parts.");
                         acceptorBefore = null;
                         setAcceptorBeforeButton.setBackground(originalButtonColor);
+                        setAcceptorBeforeButton.setOpaque(false);
+                        setAcceptorBeforeButton.setBorderPainted(true);
                         return;
                     }
                     acceptorBefore.setTitle("Acceptor before bleaching - " + new Date().toString());
                     new ImageConverter(acceptorBefore).convertToGray32();
                     acceptorBeforeSave = acceptorBefore.getProcessor().duplicate();
                     setAcceptorBeforeButton.setBackground(greenColor);
+                    setAcceptorBeforeButton.setOpaque(true);
+                    setAcceptorBeforeButton.setBorderPainted(false);
                     break;
                 case "setAcceptorAfter":
                     acceptorAfter = WindowManager.getCurrentImage();
                     if (acceptorAfter == null) {
                         logError("No image is selected.");
                         setAcceptorAfterButton.setBackground(originalButtonColor);
+                        setAcceptorAfterButton.setOpaque(false);
+                        setAcceptorAfterButton.setBorderPainted(true);
                         return;
                     }
                     if (acceptorAfter.getNChannels() > 1) {
                         logError("Current image contains more than 1 channel (" + acceptorAfter.getNChannels() + "). Please split it into parts.");
                         acceptorAfter = null;
                         setAcceptorAfterButton.setBackground(originalButtonColor);
+                        setAcceptorAfterButton.setOpaque(false);
+                        setAcceptorAfterButton.setBorderPainted(true);
                         return;
                     } else if (acceptorAfter.getNSlices() > 1) {
                         logError("Current image contains more than 1 slice (" + acceptorAfter.getNSlices() + "). Please split it into parts.");
                         acceptorAfter = null;
                         setAcceptorAfterButton.setBackground(originalButtonColor);
+                        setAcceptorAfterButton.setOpaque(false);
+                        setAcceptorAfterButton.setBorderPainted(true);
                         return;
                     }
                     acceptorAfter.setTitle("Acceptor after bleaching - " + new Date().toString());
                     new ImageConverter(acceptorAfter).convertToGray32();
                     acceptorAfterSave = acceptorAfter.getProcessor().duplicate();
                     setAcceptorAfterButton.setBackground(greenColor);
+                    setAcceptorAfterButton.setOpaque(true);
+                    setAcceptorAfterButton.setBorderPainted(false);
                     break;
                 case "clearAB":
                     if (acceptorBefore == null) {
@@ -1242,6 +1278,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorBefore = null;
                     acceptorBeforeSave = null;
                     setAcceptorBeforeButton.setBackground(originalButtonColor);
+                    setAcceptorBeforeButton.setOpaque(false);
+                    setAcceptorBeforeButton.setBorderPainted(true);
                     break;
                 case "clearAA":
                     if (acceptorAfter == null) {
@@ -1251,6 +1289,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorAfter = null;
                     acceptorAfterSave = null;
                     setAcceptorAfterButton.setBackground(originalButtonColor);
+                    setAcceptorBeforeButton.setOpaque(false);
+                    setAcceptorBeforeButton.setBorderPainted(true);
                     break;
                 case "copyRoi":
                     if (donorBefore == null) {
@@ -1316,6 +1356,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     donorBeforeSave = donorBefore.getProcessor().duplicate();
                     log("Subtracted background (" + backgroundAvg + ") of donor before bleaching.");
                     subtractDonorBeforeButton.setBackground(greenColor);
+                    subtractDonorBeforeButton.setOpaque(true);
+                    subtractDonorBeforeButton.setBorderPainted(false);
                     break;
                 }
                 case "subtractDonorAfter": {
@@ -1355,6 +1397,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     donorAfterSave = donorAfter.getProcessor().duplicate();
                     log("Subtracted background (" + backgroundAvg + ") of donor after bleaching.");
                     subtractDonorAfterButton.setBackground(greenColor);
+                    subtractDonorAfterButton.setOpaque(true);
+                    subtractDonorAfterButton.setBorderPainted(false);
                     break;
                 }
                 case "subtractAcceptorBefore": {
@@ -1393,6 +1437,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorBeforeSave = acceptorBefore.getProcessor().duplicate();
                     log("Subtracted background (" + backgroundAvg + ") of acceptor before bleaching.");
                     subtractAcceptorBeforeButton.setBackground(greenColor);
+                    subtractAcceptorBeforeButton.setOpaque(true);
+                    subtractAcceptorBeforeButton.setBorderPainted(false);
                     break;
                 }
                 case "subtractAcceptorAfter": {
@@ -1431,6 +1477,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorAfterSave = acceptorAfter.getProcessor().duplicate();
                     log("Subtracted background (" + backgroundAvg + ") of acceptor after bleaching.");
                     subtractAcceptorAfterButton.setBackground(greenColor);
+                    subtractAcceptorAfterButton.setOpaque(true);
+                    subtractAcceptorAfterButton.setBorderPainted(false);
                     break;
                 }
                 case "thresholdDonorBefore":
@@ -1441,6 +1489,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     IJ.selectWindow(donorBefore.getTitle());
                     IJ.run("Threshold...");
                     thresholdDonorBeforeButton.setBackground(greenColor);
+                    thresholdDonorBeforeButton.setOpaque(true);
+                    thresholdDonorBeforeButton.setBorderPainted(false);
                     break;
                 case "thresholdDonorAfter":
                     if (donorAfter == null) {
@@ -1450,6 +1500,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     IJ.selectWindow(donorAfter.getTitle());
                     IJ.run("Threshold...");
                     thresholdDonorAfterButton.setBackground(greenColor);
+                    thresholdDonorAfterButton.setOpaque(true);
+                    thresholdDonorAfterButton.setBorderPainted(false);
                     break;
                 case "thresholdAcceptorBefore":
                     if (acceptorBefore == null) {
@@ -1459,6 +1511,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     IJ.selectWindow(acceptorBefore.getTitle());
                     IJ.run("Threshold...");
                     thresholdAcceptorBeforeButton.setBackground(greenColor);
+                    thresholdAcceptorBeforeButton.setOpaque(true);
+                    thresholdAcceptorBeforeButton.setBorderPainted(false);
                     break;
                 case "thresholdAcceptorAfter":
                     if (acceptorAfter == null) {
@@ -1468,6 +1522,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     IJ.selectWindow(acceptorAfter.getTitle());
                     IJ.run("Threshold...");
                     thresholdAcceptorAfterButton.setBackground(greenColor);
+                    thresholdAcceptorAfterButton.setOpaque(true);
+                    thresholdAcceptorAfterButton.setBorderPainted(false);
                     break;
                 case "resetDB":
                     if (donorBefore == null) {
@@ -1481,7 +1537,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     donorBefore.setProcessor(donorBefore.getTitle(), donorBeforeSave.duplicate());
                     donorBefore.updateAndDraw();
                     thresholdDonorBeforeButton.setBackground(originalButtonColor);
+                    thresholdDonorBeforeButton.setOpaque(false);
+                    thresholdDonorBeforeButton.setBorderPainted(true);
                     smoothDonorBeforeButton.setBackground(originalButtonColor);
+                    smoothDonorBeforeButton.setOpaque(false);
+                    smoothDonorBeforeButton.setBorderPainted(true);
                     break;
                 case "resetDA":
                     if (donorAfter == null) {
@@ -1495,7 +1555,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     donorAfter.setProcessor(donorAfter.getTitle(), donorAfterSave.duplicate());
                     donorAfter.updateAndDraw();
                     thresholdDonorAfterButton.setBackground(originalButtonColor);
+                    thresholdDonorAfterButton.setOpaque(false);
+                    thresholdDonorAfterButton.setBorderPainted(true);
                     smoothDonorAfterButton.setBackground(originalButtonColor);
+                    smoothDonorAfterButton.setOpaque(false);
+                    smoothDonorAfterButton.setBorderPainted(true);
                     break;
                 case "resetAB":
                     if (acceptorBefore == null) {
@@ -1509,7 +1573,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorBefore.setProcessor(acceptorBefore.getTitle(), acceptorBeforeSave.duplicate());
                     acceptorBefore.updateAndDraw();
                     thresholdAcceptorBeforeButton.setBackground(originalButtonColor);
+                    thresholdAcceptorBeforeButton.setOpaque(false);
+                    thresholdAcceptorBeforeButton.setBorderPainted(true);
                     smoothAcceptorBeforeButton.setBackground(originalButtonColor);
+                    smoothAcceptorBeforeButton.setOpaque(false);
+                    smoothAcceptorBeforeButton.setBorderPainted(true);
                     break;
                 case "resetAA":
                     if (acceptorAfter == null) {
@@ -1523,7 +1591,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     acceptorAfter.setProcessor(acceptorAfter.getTitle(), acceptorAfterSave.duplicate());
                     acceptorAfter.updateAndDraw();
                     thresholdAcceptorAfterButton.setBackground(originalButtonColor);
+                    thresholdAcceptorAfterButton.setOpaque(false);
+                    thresholdAcceptorAfterButton.setBorderPainted(true);
                     smoothAcceptorAfterButton.setBackground(originalButtonColor);
+                    smoothAcceptorAfterButton.setOpaque(false);
+                    smoothAcceptorAfterButton.setBorderPainted(true);
                     break;
                 case "smoothDBefore":
                     if (donorBefore == null) {
@@ -1545,6 +1617,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             gb.blurGaussian(donorBefore.getProcessor(), sigma, sigma, 0.01);
                             donorBefore.updateAndDraw();
                             smoothDonorBeforeButton.setBackground(greenColor);
+                            smoothDonorBeforeButton.setOpaque(true);
+                            smoothDonorBeforeButton.setBorderPainted(false);
                             log("Gaussian blurred donor before bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldDB.getText().trim()) + " px.");
                         }
                     }
@@ -1569,6 +1643,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             gb.blurGaussian(donorAfter.getProcessor(), sigma, sigma, 0.01);
                             donorAfter.updateAndDraw();
                             smoothDonorAfterButton.setBackground(greenColor);
+                            smoothDonorAfterButton.setOpaque(true);
+                            smoothDonorAfterButton.setBorderPainted(false);
                             log("Gaussian blurred donor after bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldDA.getText().trim()) + " px.");
                         }
                     }
@@ -1593,6 +1669,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             gb.blurGaussian(acceptorBefore.getProcessor(), sigma, sigma, 0.01);
                             acceptorBefore.updateAndDraw();
                             smoothAcceptorBeforeButton.setBackground(greenColor);
+                            smoothAcceptorBeforeButton.setOpaque(true);
+                            smoothAcceptorBeforeButton.setBorderPainted(false);
                             log("Gaussian blurred acceptor before bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldAB.getText().trim()) + " px.");
                         }
                     }
@@ -1617,6 +1695,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             gb.blurGaussian(acceptorAfter.getProcessor(), sigma, sigma, 0.01);
                             acceptorAfter.updateAndDraw();
                             smoothAcceptorAfterButton.setBackground(greenColor);
+                            smoothAcceptorAfterButton.setOpaque(true);
+                            smoothAcceptorAfterButton.setBorderPainted(false);
                             log("Gaussian blurred acceptor after bleaching with sigma (radius) " + Double.parseDouble(sigmaFieldAA.getText().trim()) + " px.");
                         }
                     }
@@ -1726,6 +1806,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             df.applyPattern("#0.0");
                             log(df.format(count / countAll * 100) + "% of pixels has lower intensity by 10% in the donor after than in the donor before image.");
                             registerButton.setBackground(greenColor);
+                            registerButton.setOpaque(true);
+                            registerButton.setBorderPainted(false);
                         }
                     }
                     break;
@@ -1883,6 +1965,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         DecimalFormat df = new DecimalFormat("#.###");
                         partialBlCorrField.setText(df.format(partialBlCorrFactor).toString());
                         calculatePartialBlCorrButton.setBackground(greenColor);
+                        calculatePartialBlCorrButton.setOpaque(true);
+                        calculatePartialBlCorrButton.setBorderPainted(false);
                     }
                     break;
                 case "createFretImage":
@@ -2468,27 +2552,69 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         acceptorAfter = null;
         acceptorAfterSave = null;
         setDonorBeforeButton.setBackground(originalButtonColor);
+        setDonorBeforeButton.setOpaque(false);
+        setDonorBeforeButton.setBorderPainted(true);
         setDonorAfterButton.setBackground(originalButtonColor);
+        setDonorAfterButton.setOpaque(false);
+        setDonorAfterButton.setBorderPainted(true);
         setAcceptorBeforeButton.setBackground(originalButtonColor);
+        setAcceptorBeforeButton.setOpaque(false);
+        setAcceptorBeforeButton.setBorderPainted(true);
         setAcceptorAfterButton.setBackground(originalButtonColor);
+        setAcceptorAfterButton.setOpaque(false);
+        setAcceptorAfterButton.setBorderPainted(true);
         registerButton.setBackground(originalButtonColor);
+        registerButton.setOpaque(false);
+        registerButton.setBorderPainted(true);
         subtractDonorBeforeButton.setBackground(originalButtonColor);
+        subtractDonorBeforeButton.setOpaque(false);
+        subtractDonorBeforeButton.setBorderPainted(true);
         subtractDonorAfterButton.setBackground(originalButtonColor);
+        subtractDonorAfterButton.setOpaque(false);
+        subtractDonorAfterButton.setBorderPainted(true);
         subtractAcceptorBeforeButton.setBackground(originalButtonColor);
+        subtractAcceptorBeforeButton.setOpaque(false);
+        subtractAcceptorBeforeButton.setBorderPainted(true);
         subtractAcceptorAfterButton.setBackground(originalButtonColor);
+        subtractAcceptorAfterButton.setOpaque(false);
+        subtractAcceptorAfterButton.setBorderPainted(true);
         smoothDonorBeforeButton.setBackground(originalButtonColor);
+        smoothDonorBeforeButton.setOpaque(false);
+        smoothDonorBeforeButton.setBorderPainted(true);
         smoothDonorAfterButton.setBackground(originalButtonColor);
+        smoothDonorAfterButton.setOpaque(false);
+        setDonorAfterButton.setBorderPainted(true);
         smoothAcceptorBeforeButton.setBackground(originalButtonColor);
+        smoothAcceptorBeforeButton.setOpaque(false);
+        smoothAcceptorBeforeButton.setBorderPainted(true);
         smoothAcceptorAfterButton.setBackground(originalButtonColor);
+        smoothAcceptorAfterButton.setOpaque(false);
+        smoothAcceptorAfterButton.setBorderPainted(true);
         thresholdDonorBeforeButton.setBackground(originalButtonColor);
+        thresholdDonorBeforeButton.setOpaque(false);
+        thresholdDonorBeforeButton.setBorderPainted(true);
         thresholdDonorAfterButton.setBackground(originalButtonColor);
+        thresholdDonorAfterButton.setOpaque(false);
+        thresholdDonorAfterButton.setBorderPainted(true);
         thresholdAcceptorBeforeButton.setBackground(originalButtonColor);
+        thresholdAcceptorBeforeButton.setOpaque(false);
+        thresholdAcceptorBeforeButton.setBorderPainted(true);
         thresholdAcceptorAfterButton.setBackground(originalButtonColor);
+        thresholdAcceptorAfterButton.setOpaque(false);
+        thresholdAcceptorAfterButton.setBorderPainted(true);
         calculateDBCorrButton.setBackground(originalButtonColor);
+        calculateDBCorrButton.setOpaque(false);
+        calculateDBCorrButton.setBorderPainted(true);
         calculateAccCTCorrButton.setBackground(originalButtonColor);
+        calculateAccCTCorrButton.setOpaque(false);
+        calculateAccCTCorrButton.setBorderPainted(true);
         calculateAccPPCorrButton.setBackground(originalButtonColor);
+        calculateAccPPCorrButton.setOpaque(false);
+        calculateAccPPCorrButton.setBorderPainted(true);
         calculatePartialBlCorrButton.setBackground(originalButtonColor);
-
+        calculatePartialBlCorrButton.setOpaque(false);
+        calculatePartialBlCorrButton.setBorderPainted(true);
+        
         nextButton.setVisible(false);
         logScrollPane.setPreferredSize(new Dimension(10, 10));
         currentlyProcessedFile = 0;
@@ -2498,26 +2624,68 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     private void resetAllButtonColors() {
         setDonorBeforeButton.setBackground(originalButtonColor);
+        setDonorBeforeButton.setOpaque(false);
+        setDonorBeforeButton.setBorderPainted(true);
         setDonorAfterButton.setBackground(originalButtonColor);
+        setDonorAfterButton.setOpaque(false);
+        setDonorAfterButton.setBorderPainted(true);
         setAcceptorBeforeButton.setBackground(originalButtonColor);
+        setAcceptorBeforeButton.setOpaque(false);
+        setAcceptorBeforeButton.setBorderPainted(true);
         setAcceptorAfterButton.setBackground(originalButtonColor);
+        setAcceptorAfterButton.setOpaque(false);
+        setAcceptorAfterButton.setBorderPainted(true);
         registerButton.setBackground(originalButtonColor);
+        registerButton.setOpaque(false);
+        registerButton.setBorderPainted(true);
         subtractDonorBeforeButton.setBackground(originalButtonColor);
+        subtractDonorBeforeButton.setOpaque(false);
+        subtractDonorBeforeButton.setBorderPainted(true);
         subtractDonorAfterButton.setBackground(originalButtonColor);
+        subtractDonorAfterButton.setOpaque(false);
+        subtractDonorAfterButton.setBorderPainted(true);
         subtractAcceptorBeforeButton.setBackground(originalButtonColor);
+        subtractAcceptorBeforeButton.setOpaque(false);
+        subtractAcceptorBeforeButton.setBorderPainted(true);
         subtractAcceptorAfterButton.setBackground(originalButtonColor);
+        subtractAcceptorAfterButton.setOpaque(false);
+        subtractAcceptorAfterButton.setBorderPainted(true);
         smoothDonorBeforeButton.setBackground(originalButtonColor);
+        smoothDonorBeforeButton.setOpaque(false);
+        smoothDonorBeforeButton.setBorderPainted(true);
         smoothDonorAfterButton.setBackground(originalButtonColor);
+        smoothDonorAfterButton.setOpaque(false);
+        smoothDonorAfterButton.setBorderPainted(true);
         smoothAcceptorBeforeButton.setBackground(originalButtonColor);
+        smoothAcceptorBeforeButton.setOpaque(false);
+        smoothAcceptorBeforeButton.setBorderPainted(true);
         smoothAcceptorAfterButton.setBackground(originalButtonColor);
+        smoothAcceptorAfterButton.setOpaque(false);
+        smoothAcceptorAfterButton.setBorderPainted(true);
         thresholdDonorBeforeButton.setBackground(originalButtonColor);
+        thresholdDonorBeforeButton.setOpaque(false);
+        thresholdDonorBeforeButton.setBorderPainted(true);
         thresholdDonorAfterButton.setBackground(originalButtonColor);
+        thresholdDonorAfterButton.setOpaque(false);
+        thresholdDonorAfterButton.setBorderPainted(true);
         thresholdAcceptorBeforeButton.setBackground(originalButtonColor);
+        thresholdAcceptorBeforeButton.setOpaque(false);
+        thresholdAcceptorBeforeButton.setBorderPainted(true);
         thresholdAcceptorAfterButton.setBackground(originalButtonColor);
+        thresholdAcceptorAfterButton.setOpaque(false);
+        thresholdAcceptorAfterButton.setBorderPainted(true);
         calculateDBCorrButton.setBackground(originalButtonColor);
+        calculateDBCorrButton.setOpaque(false);
+        calculateDBCorrButton.setBorderPainted(true);
         calculateAccCTCorrButton.setBackground(originalButtonColor);
+        calculateAccCTCorrButton.setOpaque(false);
+        calculateAccCTCorrButton.setBorderPainted(true);
         calculateAccPPCorrButton.setBackground(originalButtonColor);
+        calculateAccPPCorrButton.setOpaque(false);
+        calculateAccPPCorrButton.setBorderPainted(true);
         calculatePartialBlCorrButton.setBackground(originalButtonColor);
+        calculatePartialBlCorrButton.setOpaque(false);
+        calculatePartialBlCorrButton.setBorderPainted(true);
     }
 
     public void log(String text) {
