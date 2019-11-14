@@ -160,9 +160,9 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
         JLabel resultLabel = new JLabel("Result:");
         mode1ResultLabel = new JLabel("", JLabel.CENTER);
         mode2ResultLabel = new JLabel("", JLabel.CENTER);
-        quotientsButton = new JRadioButton("point-by-point");
+        quotientsButton = new JRadioButton("Point-by-point");
         quotientsButton.setToolTipText("The factor is the averaged ratio of corresponding pixel values in the donor before and after photobleaching images.");
-        averagesButton = new JRadioButton("average pixels");
+        averagesButton = new JRadioButton("Average pixels");
         averagesButton.setToolTipText("The factor is the ratio of the gated pixel averages in the donor before and after photobleaching images.");
         quotientsButton.setSelected(true);
         buttonGroup = new ButtonGroup();
