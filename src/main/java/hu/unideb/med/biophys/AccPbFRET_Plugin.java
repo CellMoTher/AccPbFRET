@@ -1876,7 +1876,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             } else {
                                 double countAll = 0;
                                 double count = 0;
-                                float db, da = 0;
+                                float db = 0;
+                                float da = 0;
                                 double p = 1.10;
                                 log("Registration finished.");
                                 Roi roi = donorBefore.getRoi();
