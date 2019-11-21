@@ -1784,13 +1784,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as acceptor after bleaching.");
                         return;
                     } else {
-                        if (sigmaFieldAB.getText().trim().equals("")) {
+                        if (sigmaFieldAA.getText().trim().equals("")) {
                             logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         } else {
                             double sigma = 0;
                             try {
-                                sigma = Double.parseDouble(sigmaFieldAB.getText().trim());
+                                sigma = Double.parseDouble(sigmaFieldAA.getText().trim());
                             } catch (Exception ex) {
                                 logError("Sigma (radius) has to be given for Gaussian blur.");
                                 return;
