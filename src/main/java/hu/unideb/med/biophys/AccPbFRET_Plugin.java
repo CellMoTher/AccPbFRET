@@ -654,10 +654,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.gridwidth = 10;
         gc.gridx = 0;
         gc.gridy = 17;
+        JLabel thInfo = new JLabel("Threshold setting: set threshold, click Apply, then click Set to NaN");
+        container.add(thInfo, gc);
+        gc.gridx = 0;
+        gc.gridy = 18;
         container.add(new JLabel("Step 5a: set threshold for donor before image"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 17;
+        gc.gridy = 18;
         gc.insets = new Insets(0, 0, 0, 2);
         resetDBButton = new JButton("Reset");
         resetDBButton.setToolTipText("Resets blur and threshold settings");
@@ -671,17 +675,17 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         thresholdDonorBeforeButton.setActionCommand("thresholdDonorBefore");
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 17;
+        gc.gridy = 18;
         gc.insets = new Insets(2, 2, 2, 2);
         container.add(thresholdDonorBeforeButton, gc);
 
         gc.gridwidth = 10;
         gc.gridx = 0;
-        gc.gridy = 18;
+        gc.gridy = 19;
         container.add(new JLabel("Step 5b: set threshold for donor after image"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 18;
+        gc.gridy = 19;
         gc.insets = new Insets(0, 0, 0, 2);
         resetDAButton = new JButton("Reset");
         resetDAButton.setToolTipText("Resets blur and threshold settings");
@@ -695,17 +699,17 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         thresholdDonorAfterButton.setActionCommand("thresholdDonorAfter");
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 18;
+        gc.gridy = 19;
         gc.insets = new Insets(2, 2, 2, 2);
         container.add(thresholdDonorAfterButton, gc);
 
         gc.gridwidth = 10;
         gc.gridx = 0;
-        gc.gridy = 19;
+        gc.gridy = 20;
         container.add(new JLabel("Step 5c (optional): set threshold for acceptor before image"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 19;
+        gc.gridy = 20;
         gc.insets = new Insets(0, 0, 0, 2);
         resetABButton = new JButton("Reset");
         resetABButton.setToolTipText("Resets blur and threshold settings");
@@ -719,24 +723,17 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         thresholdAcceptorBeforeButton.setActionCommand("thresholdAcceptorBefore");
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 19;
+        gc.gridy = 20;
         gc.insets = new Insets(2, 2, 2, 2);
         container.add(thresholdAcceptorBeforeButton, gc);
 
         gc.gridwidth = 10;
         gc.gridx = 0;
-        gc.gridy = 20;
-        container.add(new JLabel("Step 5d (optional): set threshold for acceptor after image"), gc);
-        gc.gridwidth = GridBagConstraints.REMAINDER;
-        gc.gridx = 0;
         gc.gridy = 21;
-        gc.insets = new Insets(0, 6, 0, 6);
-        JLabel thInfo = new JLabel("Threshold setting: set threshold, click Apply, then click Set to NaN");
-        thInfo.setFont(new Font("Helvetica", Font.PLAIN, 10));
-        container.add(thInfo, gc);
+        container.add(new JLabel("Step 5d (optional): set threshold for acceptor after image"), gc);
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 20;
+        gc.gridy = 21;
         gc.insets = new Insets(0, 0, 0, 2);
         resetAAButton = new JButton("Reset");
         resetAAButton.setToolTipText("Resets blur and threshold settings");
@@ -750,13 +747,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         thresholdAcceptorAfterButton.setActionCommand("thresholdAcceptorAfter");
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 20;
+        gc.gridy = 21;
         gc.insets = new Insets(2, 2, 2, 2);
         container.add(thresholdAcceptorAfterButton, gc);
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 22;
+        gc.gridy = 23;
         JPanel line5 = new JPanel();
         line5.setPreferredSize(new Dimension(windowWidth - 35, 1));
         line5.setBackground(Color.lightGray);
@@ -765,7 +762,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         // donor bleaching correction
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 23;
+        gc.gridy = 24;
         donorBlCorrLabel = new JLabel("Correction 1: calculate/set donor bleaching correction factor:");
         container.add(donorBlCorrLabel, gc);
         if (!donorBlCorrMenuItem.isSelected()) {
@@ -773,7 +770,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 23;
+        gc.gridy = 24;
         donorBlCorrField = new JTextField("1.01", 4);
         donorBlCorrField.setHorizontalAlignment(JTextField.RIGHT);
         container.add(donorBlCorrField, gc);
@@ -782,7 +779,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 23;
+        gc.gridy = 24;
         gc.insets = new Insets(2, 2, 2, 2);
         calculateDBCorrButton = new JButton("Calculate");
         calculateDBCorrButton.addActionListener(this);
@@ -794,7 +791,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 24;
+        gc.gridy = 25;
         lineDonorBlCorr = new JPanel();
         lineDonorBlCorr.setPreferredSize(new Dimension(windowWidth - 35, 1));
         lineDonorBlCorr.setBackground(Color.lightGray);
@@ -806,7 +803,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         // acceptor cross-talk correction
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 25;
+        gc.gridy = 26;
         accCrossTalkCorrLabel = new JLabel("Correction 2: calculate/set acceptor cross-talk correction factor:");
         container.add(accCrossTalkCorrLabel, gc);
         if (!accCrossTalkCorrMenuItem.isSelected()) {
@@ -814,7 +811,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 25;
+        gc.gridy = 26;
         accCrossTalkCorrField = new JTextField("0.01", 4);
         accCrossTalkCorrField.setHorizontalAlignment(JTextField.RIGHT);
         container.add(accCrossTalkCorrField, gc);
@@ -823,7 +820,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 25;
+        gc.gridy = 26;
         gc.insets = new Insets(2, 2, 2, 2);
         calculateAccCTCorrButton = new JButton("Calculate");
         calculateAccCTCorrButton.addActionListener(this);
@@ -835,7 +832,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 26;
+        gc.gridy = 27;
         lineAccCrossTalk = new JPanel();
         lineAccCrossTalk.setPreferredSize(new Dimension(windowWidth - 35, 1));
         lineAccCrossTalk.setBackground(Color.lightGray);
@@ -847,7 +844,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         // acceptor photoproduct correction
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 27;
+        gc.gridy = 28;
         accPhotoprCorrLabel = new JLabel("Correction 3: calculate/set acceptor photoproduct correction factor:");
         container.add(accPhotoprCorrLabel, gc);
         if (!accPhotoprCorrMenuItem.isSelected()) {
@@ -855,7 +852,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 27;
+        gc.gridy = 28;
         accPhotoprCorrField = new JTextField("0.01", 4);
         accPhotoprCorrField.setHorizontalAlignment(JTextField.RIGHT);
         container.add(accPhotoprCorrField, gc);
@@ -864,7 +861,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 27;
+        gc.gridy = 28;
         gc.insets = new Insets(2, 2, 2, 2);
         calculateAccPPCorrButton = new JButton("Calculate");
         calculateAccPPCorrButton.addActionListener(this);
@@ -876,7 +873,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 28;
+        gc.gridy = 29;
         lineAccPhotopr = new JPanel();
         lineAccPhotopr.setPreferredSize(new Dimension(windowWidth - 35, 1));
         lineAccPhotopr.setBackground(Color.lightGray);
@@ -888,7 +885,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         // correction for partially bleached acceptor
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 29;
+        gc.gridy = 30;
         partialBlCorrLabel = new JLabel("Correction 4: calculate partial acceptor photobleaching correction factor:");
         container.add(partialBlCorrLabel, gc);
         if (!partialBlCorrMenuItem.isSelected()) {
@@ -896,7 +893,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = 1;
         gc.gridx = 9;
-        gc.gridy = 29;
+        gc.gridy = 30;
         partialBlCorrField = new JTextField("0", 4);
         partialBlCorrField.setHorizontalAlignment(JTextField.RIGHT);
         container.add(partialBlCorrField, gc);
@@ -905,7 +902,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         }
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 29;
+        gc.gridy = 30;
         gc.insets = new Insets(2, 2, 2, 2);
         calculatePartialBlCorrButton = new JButton("Calculate");
         calculatePartialBlCorrButton.addActionListener(this);
@@ -917,7 +914,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 30;
+        gc.gridy = 31;
         linePartialBl = new JPanel();
         linePartialBl.setPreferredSize(new Dimension(windowWidth - 35, 1));
         linePartialBl.setBackground(Color.lightGray);
@@ -930,7 +927,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         JPanel createFretImgPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
         gc.gridwidth = 10;
         gc.gridx = 0;
-        gc.gridy = 31;
+        gc.gridy = 32;
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
         createFretImgPanel.add(new JLabel("Step 6a: create FRET image  "));
@@ -945,13 +942,13 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 31;
+        gc.gridy = 32;
         container.add(createButton, gc);
 
         JPanel saveFretImgPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
         gc.gridwidth = 10;
         gc.gridx = 0;
-        gc.gridy = 32;
+        gc.gridy = 33;
         gc.insets = new Insets(2, 2, 2, 2);
         gc.fill = GridBagConstraints.NONE;
         saveFretImgPanel.add(new JLabel("Step 6b: save FRET image as TIFF"));
@@ -962,12 +959,12 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 10;
-        gc.gridy = 32;
+        gc.gridy = 33;
         container.add(saveButton, gc);
 
         gc.gridwidth = GridBagConstraints.REMAINDER;
         gc.gridx = 0;
-        gc.gridy = 33;
+        gc.gridy = 34;
         JPanel line7 = new JPanel();
         line7.setPreferredSize(new Dimension(windowWidth - 35, 1));
         line7.setBackground(Color.lightGray);
@@ -975,7 +972,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
         gc.gridwidth = 8;
         gc.gridx = 0;
-        gc.gridy = 34;
+        gc.gridy = 35;
         container.add(new JLabel("Step 7: select ROIs and make measurements"), gc);
         gc.gridx = 9;
         gc.gridwidth = 1;
@@ -991,14 +988,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         measureButton.addActionListener(this);
         measureButton.setActionCommand("measureFretImage");
         gc.gridx = 10;
-        gc.gridy = 34;
+        gc.gridy = 35;
         container.add(measureButton, gc);
         nextButton = new JButton("Next");
         nextButton.setMargin(new Insets(2, 2, 2, 2));
         nextButton.addActionListener(this);
         nextButton.setActionCommand("nextImage");
         gc.gridx = 11;
-        gc.gridy = 34;
+        gc.gridy = 35;
         container.add(nextButton, gc);
         nextButton.setVisible(false);
 
