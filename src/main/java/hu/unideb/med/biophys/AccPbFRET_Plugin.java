@@ -29,6 +29,7 @@ import ij.io.FileSaver;
 import ij.io.Opener;
 import ij.measure.Measurements;
 import ij.measure.ResultsTable;
+import ij.plugin.HyperStackConverter;
 import ij.plugin.StackEditor;
 import ij.plugin.filter.Analyzer;
 import ij.plugin.filter.GaussianBlur;
@@ -1037,7 +1038,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         return;
                     }
                     if (WindowManager.getCurrentImage().isHyperStack()) {
-                        ij.plugin.HyperStackConverter hc = new ij.plugin.HyperStackConverter();
+                        HyperStackConverter hc = new HyperStackConverter();
                         hc.run("hstostack");
                     }
                     StackEditor se = new StackEditor();
