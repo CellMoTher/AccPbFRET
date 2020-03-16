@@ -34,7 +34,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -54,10 +55,12 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
     private JButton setToMaskImgButton;
     private JButton setMaskImgButton;
     private JButton createImagesButton;
+    private final DateTimeFormatter dateTimeFormat;
 
     public ApplyMaskDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Apply Mask to An Image");
         this.accBlWindow = accBlWindow;
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
         createDialogGui();
@@ -125,7 +128,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
                         toMaskImg = null;
                         return;
                     }
-                    toMaskImg.setTitle("Image to mask - " + new Date().toString());
+                    toMaskImg.setTitle("Image to mask - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(toMaskImg).convertToGray32();
                     setToMaskImgButton.setBackground(accBlWindow.greenColor);
                     setToMaskImgButton.setOpaque(true);
@@ -146,7 +149,7 @@ public class ApplyMaskDialog extends JDialog implements ActionListener {
                         maskImg = null;
                         return;
                     }
-                    maskImg.setTitle("Mask image - " + new Date().toString());
+                    maskImg.setTitle("Mask image - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(maskImg).convertToGray32();
                     setMaskImgButton.setBackground(accBlWindow.greenColor);
                     setMaskImgButton.setOpaque(true);

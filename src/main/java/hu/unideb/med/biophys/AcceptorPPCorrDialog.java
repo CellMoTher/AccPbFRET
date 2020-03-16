@@ -35,7 +35,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -70,10 +71,12 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
     private JLabel mode1ResultLabel;
     private JLabel mode2ResultLabel;
     private JCheckBox showPPImagesCB;
+    private final DateTimeFormatter dateTimeFormat;
 
     public AcceptorPPCorrDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Acceptor Photoproduct Correction Factor");
         this.accBlWindow = accBlWindow;
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
         createDialogGui();
@@ -261,7 +264,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         donorCAfter = null;
                         return;
                     }
-                    donorCAfter.setTitle("Donor after bleaching (pp. corr.) - " + new Date().toString());
+                    donorCAfter.setTitle("Donor after bleaching (pp. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCAfter).convertToGray32();
                     setDonorAfterButton.setBackground(accBlWindow.greenColor);
                     setDonorAfterButton.setOpaque(true);
@@ -288,7 +291,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         acceptorCBefore = null;
                         return;
                     }
-                    acceptorCBefore.setTitle("Acceptor before bleaching (pp. corr.) - " + new Date().toString());
+                    acceptorCBefore.setTitle("Acceptor before bleaching (pp. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorCBefore).convertToGray32();
                     setAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
                     setAcceptorBeforeButton.setOpaque(true);

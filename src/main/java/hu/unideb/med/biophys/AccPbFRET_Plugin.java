@@ -62,8 +62,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -198,7 +199,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private JCheckBox applyShiftCB;
     private JTextPane log;
     private JScrollPane logScrollPane;
-    private SimpleDateFormat format;
+    private final DateTimeFormatter dateTimeFormat;
+    private final DateTimeFormatter timeFormat;
     private File[] automaticallyProcessedFiles = null;
     private int currentlyProcessedFile = 0;
     private String currentlyProcessedFileName = null;
@@ -212,7 +214,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         IJ.versionLessThan(imageJVersion);
         Locale.setDefault(Locale.ENGLISH);
         ToolTipManager.sharedInstance().setDismissDelay(10000);
-        format = new SimpleDateFormat("HH:mm:ss");
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
+        timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
         createGui();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -1277,7 +1280,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         return;
                     }
                     donorBefore = ip;
-                    donorBefore.setTitle("Donor before bleaching - " + new Date().toString());
+                    donorBefore.setTitle("Donor before bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorBefore).convertToGray32();
                     if (automaticallyProcessedFiles == null) {
                         currentlyProcessedFileName = null;
@@ -1320,7 +1323,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         return;
                     }
                     donorAfter = ip;
-                    donorAfter.setTitle("Donor after bleaching - " + new Date().toString());
+                    donorAfter.setTitle("Donor after bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorAfter).convertToGray32();
                     setDonorAfterButton.setBackground(greenColor);
                     setDonorAfterButton.setOpaque(true);
@@ -1351,7 +1354,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         setAcceptorBeforeButton.setBorderPainted(true);
                         return;
                     }
-                    acceptorBefore.setTitle("Acceptor before bleaching - " + new Date().toString());
+                    acceptorBefore.setTitle("Acceptor before bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorBefore).convertToGray32();
                     acceptorBeforeSave = acceptorBefore.getProcessor().duplicate();
                     setAcceptorBeforeButton.setBackground(greenColor);
@@ -1382,7 +1385,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         setAcceptorAfterButton.setBorderPainted(true);
                         return;
                     }
-                    acceptorAfter.setTitle("Acceptor after bleaching - " + new Date().toString());
+                    acceptorAfter.setTitle("Acceptor after bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorAfter).convertToGray32();
                     acceptorAfterSave = acceptorAfter.getProcessor().duplicate();
                     setAcceptorAfterButton.setBackground(greenColor);
@@ -2751,7 +2754,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     public void log(String text) {
         try {
-            log.getDocument().insertString(log.getDocument().getLength(), "\n" + format.format(new Date()) + " " + text, log.getStyle("BLACK"));
+            log.getDocument().insertString(log.getDocument().getLength(), "\n" + timeFormat.format(LocalTime.now()) + " " + text, log.getStyle("BLACK"));
             log.setCaretPosition(log.getDocument().getLength());
         } catch (javax.swing.text.BadLocationException e) {
         }
@@ -2759,7 +2762,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     public void logError(String text) {
         try {
-            log.getDocument().insertString(log.getDocument().getLength(), "\n" + format.format(new Date()) + " ERROR: " + text, log.getStyle("RED"));
+            log.getDocument().insertString(log.getDocument().getLength(), "\n" + timeFormat.format(LocalTime.now()) + " ERROR: " + text, log.getStyle("RED"));
             log.setCaretPosition(log.getDocument().getLength());
         } catch (javax.swing.text.BadLocationException e) {
         }
@@ -2767,7 +2770,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     public void logWarning(String text) {
         try {
-            log.getDocument().insertString(log.getDocument().getLength(), "\n" + format.format(new Date()) + " WARNING: " + text, log.getStyle("BLUE"));
+            log.getDocument().insertString(log.getDocument().getLength(), "\n" + timeFormat.format(LocalTime.now()) + " WARNING: " + text, log.getStyle("BLUE"));
             log.setCaretPosition(log.getDocument().getLength());
         } catch (javax.swing.text.BadLocationException e) {
         }
@@ -2780,10 +2783,10 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 PrintWriter pw = new PrintWriter(sw);
                 t.printStackTrace(pw);
                 pw.flush();
-                log.getDocument().insertString(log.getDocument().getLength(), "\n" + format.format(new Date()) + " ERROR: " + sw.toString(), log.getStyle("RED"));
+                log.getDocument().insertString(log.getDocument().getLength(), "\n" + timeFormat.format(LocalTime.now()) + " ERROR: " + sw.toString(), log.getStyle("RED"));
                 log.setCaretPosition(log.getDocument().getLength());
             } else {
-                log.getDocument().insertString(log.getDocument().getLength(), "\n" + format.format(new Date()) + " ERROR: " + message, log.getStyle("RED"));
+                log.getDocument().insertString(log.getDocument().getLength(), "\n" + timeFormat.format(LocalTime.now()) + " ERROR: " + message, log.getStyle("RED"));
                 log.setCaretPosition(log.getDocument().getLength());
             }
         } catch (javax.swing.text.BadLocationException e) {

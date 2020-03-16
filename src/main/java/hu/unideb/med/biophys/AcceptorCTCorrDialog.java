@@ -35,7 +35,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -70,10 +71,12 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
     private JLabel mode1ResultLabel;
     private JLabel mode2ResultLabel;
     private JCheckBox showCTCImagesCB;
+    private final DateTimeFormatter dateTimeFormat;
 
     public AcceptorCTCorrDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Acceptor Cross-Talk Correction Factor");
         this.accBlWindow = accBlWindow;
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
         createDialogGui();
@@ -261,7 +264,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         donorCBefore = null;
                         return;
                     }
-                    donorCBefore.setTitle("Donor before bleaching (ct. corr.) - " + new Date().toString());
+                    donorCBefore.setTitle("Donor before bleaching (ct. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCBefore).convertToGray32();
                     setDonorBeforeButton.setBackground(accBlWindow.greenColor);
                     setDonorBeforeButton.setOpaque(true);
@@ -288,7 +291,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         acceptorCBefore = null;
                         return;
                     }
-                    acceptorCBefore.setTitle("Acceptor before bleaching (ct. corr.) - " + new Date().toString());
+                    acceptorCBefore.setTitle("Acceptor before bleaching (ct. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorCBefore).convertToGray32();
                     setAcceptorBeforeButton.setBackground(accBlWindow.greenColor);
                     setAcceptorBeforeButton.setOpaque(true);

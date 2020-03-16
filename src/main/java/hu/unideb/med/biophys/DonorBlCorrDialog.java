@@ -36,7 +36,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -73,10 +74,12 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
     private JLabel mode1ResultLabel;
     private JLabel mode2ResultLabel;
     private JCheckBox showBlCImagesCB;
+    private final DateTimeFormatter dateTimeFormat;
 
     public DonorBlCorrDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Donor Bleaching Correction Factor");
         this.accBlWindow = accBlWindow;
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
         createDialogGui();
@@ -282,7 +285,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         donorCBefore = null;
                         return;
                     }
-                    donorCBefore.setTitle("Donor before bleaching (bl. corr.) - " + new Date().toString());
+                    donorCBefore.setTitle("Donor before bleaching (bl. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCBefore).convertToGray32();
                     setBeforeButton.setBackground(accBlWindow.greenColor);
                     setBeforeButton.setOpaque(true);
@@ -309,7 +312,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         donorCAfter = null;
                         return;
                     }
-                    donorCAfter.setTitle("Donor after bleaching (bl. corr.) - " + new Date().toString());
+                    donorCAfter.setTitle("Donor after bleaching (bl. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCAfter).convertToGray32();
                     setAfterButton.setBackground(accBlWindow.greenColor);
                     setAfterButton.setOpaque(true);

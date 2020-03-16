@@ -34,7 +34,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -56,10 +57,12 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
     private JButton setSecondImgButton;
     private JButton createRatioImageButton;
     private JCheckBox useMainWindowImages;
+    private final DateTimeFormatter dateTimeFormat;
 
     public CalculateImgRatioDialog(AccPbFRET_Plugin accBlWindow) {
         setTitle("Calculate Ratio of Two Images");
         this.accBlWindow = accBlWindow;
+        dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(false);
         createDialogGui();
@@ -134,7 +137,7 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
                         firstImg = null;
                         return;
                     }
-                    firstImg.setTitle("Image 1 - " + new Date().toString());
+                    firstImg.setTitle("Image 1 - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(firstImg).convertToGray32();
                     setFirstImgButton.setBackground(accBlWindow.greenColor);
                     setFirstImgButton.setOpaque(true);
@@ -155,7 +158,7 @@ public class CalculateImgRatioDialog extends JDialog implements ActionListener {
                         secondImg = null;
                         return;
                     }
-                    secondImg.setTitle("Image 2 - " + new Date().toString());
+                    secondImg.setTitle("Image 2 - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(secondImg).convertToGray32();
                     setSecondImgButton.setBackground(accBlWindow.greenColor);
                     setSecondImgButton.setOpaque(true);
