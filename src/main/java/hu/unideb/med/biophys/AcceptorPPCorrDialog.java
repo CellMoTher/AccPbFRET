@@ -424,7 +424,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                             }
                         }
                         float avg = (float) (sumc / countc);
-                        mode1ResultLabel.setText(df.format(avg).toString());
+                        mode1ResultLabel.setText(df.format(avg));
 
                         float[] ipDAP = (float[]) ipDA.getPixels();
                         float[] ipABP = (float[]) ipAB.getPixels();
@@ -448,7 +448,7 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                             }
                         }
                         avgAcceptorBefore = sumc / countc;
-                        mode2ResultLabel.setText(df.format((float) (avgDonorAfter / avgAcceptorBefore)).toString());
+                        mode2ResultLabel.setText(df.format((float) (avgDonorAfter / avgAcceptorBefore)));
                         calculateButton.setBackground(accBlWindow.greenColor);
                         calculateButton.setOpaque(true);
                         calculateButton.setBorderPainted(false);

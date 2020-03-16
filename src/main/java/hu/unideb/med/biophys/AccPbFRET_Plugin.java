@@ -2081,7 +2081,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         }
                         float partialBlCorrFactor = (float) (sum / count);
                         DecimalFormat df = new DecimalFormat("#.###");
-                        partialBlCorrField.setText(df.format(partialBlCorrFactor).toString());
+                        partialBlCorrField.setText(df.format(partialBlCorrFactor));
                         calculatePartialBlCorrButton.setBackground(greenColor);
                         calculatePartialBlCorrButton.setOpaque(true);
                         calculatePartialBlCorrButton.setBorderPainted(false);

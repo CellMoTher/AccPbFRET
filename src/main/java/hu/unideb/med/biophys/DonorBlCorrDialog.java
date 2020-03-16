@@ -463,7 +463,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                             }
                         }
                         float avg = (float) (sumc / countc);
-                        mode1ResultLabel.setText(df.format(avg).toString());
+                        mode1ResultLabel.setText(df.format(avg));
 
                         float[] ipDBP = (float[]) ipDB.getPixels();
                         float[] ipDAP = (float[]) ipDA.getPixels();
@@ -487,7 +487,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                             }
                         }
                         avgAfter = sumc / countc;
-                        mode2ResultLabel.setText(df.format((float) (avgBefore / avgAfter)).toString());
+                        mode2ResultLabel.setText(df.format((float) (avgBefore / avgAfter)));
                         calculateButton.setBackground(accBlWindow.greenColor);
                         calculateButton.setOpaque(true);
                         calculateButton.setBorderPainted(false);
