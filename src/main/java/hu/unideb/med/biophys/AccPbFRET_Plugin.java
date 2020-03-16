@@ -207,7 +207,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     public AccPbFRET_Plugin() {
         super();
-        setTitle("AccPbFRET v" + version);
+        setTitle("AccPbFRET v" + version + " - Acceptor Photobleaching FRET Imaging");
         IJ.versionLessThan(imageJVersion);
         Locale.setDefault(Locale.ENGLISH);
         ToolTipManager.sharedInstance().setDismissDelay(10000);
