@@ -21,12 +21,10 @@
  */
 package hu.unideb.med.biophys;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,9 +44,8 @@ class HelpWindow extends JFrame {
         this.accBlWindow = accBlWindow;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         createGui();
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(651, 800);
-        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
+        setLocationRelativeTo(null);
     }
 
     public void createGui() {

@@ -25,11 +25,9 @@ import ij.IJ;
 import ij.ImagePlus;
 import ij.WindowManager;
 import ij.process.FloatProcessor;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ColorModel;
@@ -59,14 +57,13 @@ public class ShiftDialog extends JDialog implements ActionListener {
         setModal(false);
         createDialogGui();
         getRootPane().setDefaultButton(cancelButton);
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         if (IJ.isMacOSX()) {
             setSize(190, 150);
         } else {
             setSize(150, 150);
         }
         pack();
-        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
+        setLocationRelativeTo(null);
     }
 
     public void createDialogGui() {
