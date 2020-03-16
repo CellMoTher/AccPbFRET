@@ -31,6 +31,7 @@ import ij.measure.Measurements;
 import ij.measure.ResultsTable;
 import ij.plugin.HyperStackConverter;
 import ij.plugin.StackEditor;
+import ij.plugin.WindowOrganizer;
 import ij.plugin.filter.Analyzer;
 import ij.plugin.filter.GaussianBlur;
 import ij.process.FHT;
@@ -119,6 +120,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private JMenuItem saveTiffMenuItem;
     private JMenuItem saveBmpMenuItem;
     private JMenuItem splitMenuItem;
+    private JMenuItem tileMenuItem;
     private JMenuItem applyMaskMenuItem;
     private JMenuItem bleachingMaskMenuItem;
     private JMenuItem calculateImgRatioMenuItem;
@@ -269,6 +271,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         splitMenuItem.setActionCommand("split");
         splitMenuItem.addActionListener(this);
         imageMenu.add(splitMenuItem);
+        imageMenu.addSeparator();
+        tileMenuItem = new JMenuItem("Tile Image Windows");
+        tileMenuItem.setActionCommand("tile");
+        tileMenuItem.addActionListener(this);
+        imageMenu.add(tileMenuItem);
         imageMenu.addSeparator();
         applyMaskMenuItem = new JMenuItem("Apply Mask...");
         applyMaskMenuItem.setActionCommand("applyMask");
@@ -1040,6 +1047,10 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     }
                     StackEditor se = new StackEditor();
                     se.run("toimages");
+                    break;
+                case "tile":
+                    WindowOrganizer wo = new WindowOrganizer();
+                    wo.run("tile");
                     break;
                 case "applyMask":
                     if (applyMaskDialog != null) {
