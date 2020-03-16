@@ -47,8 +47,8 @@ class HelpWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         createGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(600, 800);
-        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
+        setSize(651, 800);
+        setLocation((screen.width - getWidth())/2, (screen.height - getHeight())/2);
     }
 
     public void createGui() {

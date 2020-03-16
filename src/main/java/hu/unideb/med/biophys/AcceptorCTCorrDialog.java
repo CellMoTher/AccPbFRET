@@ -78,7 +78,11 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
         setModal(false);
         createDialogGui();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(300, 380);
+        if (IJ.isMacOSX()) {
+            setSize(320, 385);
+        } else {
+            setSize(300, 385);
+        }
         setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
