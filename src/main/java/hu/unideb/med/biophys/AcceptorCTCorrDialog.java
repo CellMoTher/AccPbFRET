@@ -465,7 +465,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                     break;
                 case "setfactor":
                     if (quotientsButton.isSelected()) {
-                        if (mode1ResultLabel.getText().equals("")) {
+                        if (mode1ResultLabel.getText().isEmpty()) {
                             accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
                             return;
                         }
@@ -477,7 +477,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         setButton.setOpaque(true);
                         setButton.setBorderPainted(false);
                     } else {
-                        if (mode2ResultLabel.getText().equals("")) {
+                        if (mode2ResultLabel.getText().isEmpty()) {
                             accBlWindow.logError("The correction factor has to be calculated before setting it. (ct. corr.)");
                             return;
                         }

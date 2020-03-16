@@ -1724,7 +1724,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as donor before bleaching.");
                         return;
                     } else {
-                        if (sigmaFieldDB.getText().trim().equals("")) {
+                        if (sigmaFieldDB.getText().trim().isEmpty()) {
                             logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         } else {
@@ -1750,7 +1750,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as donor after bleaching.");
                         return;
                     } else {
-                        if (sigmaFieldDA.getText().trim().equals("")) {
+                        if (sigmaFieldDA.getText().trim().isEmpty()) {
                             logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         } else {
@@ -1776,7 +1776,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as acceptor before bleaching.");
                         return;
                     } else {
-                        if (sigmaFieldAB.getText().trim().equals("")) {
+                        if (sigmaFieldAB.getText().trim().isEmpty()) {
                             logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         } else {
@@ -1802,7 +1802,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as acceptor after bleaching.");
                         return;
                     } else {
-                        if (sigmaFieldAA.getText().trim().equals("")) {
+                        if (sigmaFieldAA.getText().trim().isEmpty()) {
                             logError("Sigma (radius) has to be given for Gaussian blur.");
                             return;
                         } else {
@@ -2101,16 +2101,16 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         logError("No image is set as acceptor before bleaching.");
                         return;
                     } else {
-                        if (donorBlCorrMenuItem.isSelected() && donorBlCorrField.getText().trim().equals("")) {
+                        if (donorBlCorrMenuItem.isSelected() && donorBlCorrField.getText().trim().isEmpty()) {
                             logError("Bleaching correction factor has to be given.");
                             return;
-                        } else if (accCrossTalkCorrMenuItem.isSelected() && accCrossTalkCorrField.getText().trim().equals("")) {
+                        } else if (accCrossTalkCorrMenuItem.isSelected() && accCrossTalkCorrField.getText().trim().isEmpty()) {
                             logError("Acceptor cross-talk correction factor has to be given.");
                             return;
-                        } else if (accPhotoprCorrMenuItem.isSelected() && accPhotoprCorrField.getText().trim().equals("")) {
+                        } else if (accPhotoprCorrMenuItem.isSelected() && accPhotoprCorrField.getText().trim().isEmpty()) {
                             logError("Acceptor photoproduct correction factor has to be given.");
                             return;
-                        } else if (partialBlCorrMenuItem.isSelected() && partialBlCorrField.getText().trim().equals("")) {
+                        } else if (partialBlCorrMenuItem.isSelected() && partialBlCorrField.getText().trim().isEmpty()) {
                             logError("Partial acceptor photobleaching correction factor has to be given.");
                             return;
                         } else {
