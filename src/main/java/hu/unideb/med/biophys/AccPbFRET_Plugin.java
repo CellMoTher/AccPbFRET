@@ -331,7 +331,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
         partialBlCorrMenuItem.setActionCommand("partialblcorrm");
         partialBlCorrMenuItem.addActionListener(this);
         correctionMenu.add(partialBlCorrMenuItem);
-        exitMenuItem = new JMenuItem("Quit");
+        exitMenuItem = new JMenuItem("Quit AccPbFRET");
         exitMenuItem.setActionCommand("exit");
         exitMenuItem.addActionListener(this);
         fileMenu.addSeparator();
@@ -2779,7 +2779,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     }
 
     public void exit() {
-        int choice = JOptionPane.showConfirmDialog(this, "Do you really want to exit?", "Exit", JOptionPane.OK_CANCEL_OPTION);
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit AccPbFRET?", "Quit", JOptionPane.OK_CANCEL_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             if (shiftDialog != null) {
                 shiftDialog.setVisible(false);
