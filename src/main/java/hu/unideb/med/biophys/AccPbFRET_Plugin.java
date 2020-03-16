@@ -47,6 +47,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -1727,7 +1728,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             double sigma = 0;
                             try {
                                 sigma = Double.parseDouble(sigmaFieldDB.getText().trim());
-                            } catch (Exception ex) {
+                            } catch (NumberFormatException ex) {
                                 logError("Sigma (radius) has to be given for Gaussian blur.");
                                 return;
                             }
@@ -1753,7 +1754,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             double sigma = 0;
                             try {
                                 sigma = Double.parseDouble(sigmaFieldDA.getText().trim());
-                            } catch (Exception ex) {
+                            } catch (NumberFormatException ex) {
                                 logError("Sigma (radius) has to be given for Gaussian blur.");
                                 return;
                             }
@@ -1779,7 +1780,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             double sigma = 0;
                             try {
                                 sigma = Double.parseDouble(sigmaFieldAB.getText().trim());
-                            } catch (Exception ex) {
+                            } catch (NumberFormatException ex) {
                                 logError("Sigma (radius) has to be given for Gaussian blur.");
                                 return;
                             }
@@ -1805,7 +1806,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             double sigma = 0;
                             try {
                                 sigma = Double.parseDouble(sigmaFieldAA.getText().trim());
-                            } catch (Exception ex) {
+                            } catch (NumberFormatException ex) {
                                 logError("Sigma (radius) has to be given for Gaussian blur.");
                                 return;
                             }
@@ -2114,7 +2115,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             if (donorBlCorrMenuItem.isSelected()) {
                                 try {
                                     donorBlCorr = Float.parseFloat(donorBlCorrField.getText().trim());
-                                } catch (Exception ex) {
+                                } catch (NumberFormatException ex) {
                                     logError("Donor bleaching correction factor has to be given.");
                                     return;
                                 }
@@ -2126,7 +2127,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             if (accCrossTalkCorrMenuItem.isSelected()) {
                                 try {
                                     acceptorCTCorr = Float.parseFloat(accCrossTalkCorrField.getText().trim());
-                                } catch (Exception ex) {
+                                } catch (NumberFormatException ex) {
                                     logError("Acceptor cross-talk correction factor has to be given.");
                                     return;
                                 }
@@ -2138,7 +2139,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             if (accPhotoprCorrMenuItem.isSelected()) {
                                 try {
                                     acceptorPPCorr = Float.parseFloat(accPhotoprCorrField.getText().trim());
-                                } catch (Exception ex) {
+                                } catch (NumberFormatException ex) {
                                     logError("Acceptor photoproduct correction factor has to be given.");
                                     return;
                                 }
@@ -2150,7 +2151,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             if (partialBlCorrMenuItem.isSelected()) {
                                 try {
                                     partialBlCorr = Float.parseFloat(partialBlCorrField.getText().trim());
-                                } catch (Exception ex) {
+                                } catch (NumberFormatException ex) {
                                     logError("Partial acceptor photobleaching correction factor has to be given.");
                                     return;
                                 }
@@ -2589,7 +2590,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 default:
                     break;
             }
-        } catch (Throwable t) {
+        } catch (HeadlessException | NumberFormatException t) {
             logException(t.toString(), t);
         }
     }
