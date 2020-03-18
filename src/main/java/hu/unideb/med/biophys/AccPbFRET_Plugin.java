@@ -91,6 +91,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     private final String version = "4.0.0";
     private final String lastModified = "18 March 2020";
+    private final String fijiVersion = "2.0.0-rc-69";
     private final String imageJVersion = "1.52p";
     private final String javaVersion = "1.8.0_202";
     private final int windowWidth = 650;
@@ -2582,7 +2583,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             + "Written by: János Roszik (janosr@med.unideb.hu), János Szöllősi (szollo@med.unideb.hu),\n"
                             + "and György Vereb (vereb@med.unideb.hu)\n"
                             + "Version: " + version + " (" + lastModified + ")\n"
-                            + "The plugin was tested with ImageJ version " + imageJVersion + " using Java " + javaVersion + ".\n\n"
+                            + "Tested with (Fiji Is Just) ImageJ " + fijiVersion + "/" + imageJVersion + ";" + " Java " + javaVersion + ".\n"
                             + "If you are using the plugin, please cite the following paper:\n"
                             + "Roszik J, Szollosi J, Vereb G: AccPbFRET: an ImageJ plugin for semi-automatic, fully corrected \n"
                             + "analysis of acceptor photobleaching FRET images. BMC Bioinformatics 2008, 9:346");
