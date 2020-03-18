@@ -413,13 +413,13 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         double countc = 0;
                         for (int i = 0; i < width; i++) {
                             for (int j = 0; j < height; j++) {
-                                if (ipAB.getPixelValue(i, j) > 0 && ipDB.getPixelValue(i, j) > 0) {
-                                    double current = ipDB.getPixelValue(i, j) / ipAB.getPixelValue(i, j);
+                                double current = ipDB.getPixelValue(i, j) / ipAB.getPixelValue(i, j);
+                                if (!Double.isNaN(current)) {
                                     sumc += current;
                                     countc++;
-                                    if (showCTCImagesCB.isSelected()) {
-                                        corrImgPoints[i][j] = (float) current;
-                                    }
+                                }
+                                if (showCTCImagesCB.isSelected()) {
+                                    corrImgPoints[i][j] = (float) current;
                                 }
                             }
                         }
@@ -460,6 +460,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         }
                     }
                     break;
+
                 case "setfactor":
                     if (quotientsButton.isSelected()) {
                         if (mode1ResultLabel.getText().isEmpty()) {

@@ -413,13 +413,13 @@ class AcceptorPPCorrDialog extends JDialog implements ActionListener {
                         double countc = 0;
                         for (int i = 0; i < width; i++) {
                             for (int j = 0; j < height; j++) {
-                                if (ipAB.getPixelValue(i, j) > 0 && ipDA.getPixelValue(i, j) > 0) {
-                                    double current = ipDA.getPixelValue(i, j) / ipAB.getPixelValue(i, j);
+                                double current = ipDA.getPixelValue(i, j) / ipAB.getPixelValue(i, j);
+                                if (!Double.isNaN(current)) {
                                     sumc += current;
                                     countc++;
-                                    if (showPPImagesCB.isSelected()) {
-                                        corrImgPoints[i][j] = (float) current;
-                                    }
+                                }
+                                if (showPPImagesCB.isSelected()) {
+                                    corrImgPoints[i][j] = (float) current;
                                 }
                             }
                         }

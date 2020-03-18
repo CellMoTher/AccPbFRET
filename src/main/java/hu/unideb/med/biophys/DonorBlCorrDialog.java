@@ -452,13 +452,13 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         double countc = 0;
                         for (int i = 0; i < width; i++) {
                             for (int j = 0; j < height; j++) {
-                                if (ipDA.getPixelValue(i, j) > 0 && ipDB.getPixelValue(i, j) > 0) {
-                                    double current = ipDB.getPixelValue(i, j) / ipDA.getPixelValue(i, j);
+                                double current = ipDB.getPixelValue(i, j) / ipDA.getPixelValue(i, j);
+                                if (!Double.isNaN(current)) {
                                     sumc += current;
                                     countc++;
-                                    if (showBlCImagesCB.isSelected()) {
-                                        corrImgPoints[i][j] = (float) current;
-                                    }
+                                }
+                                if (showBlCImagesCB.isSelected()) {
+                                    corrImgPoints[i][j] = (float) current;
                                 }
                             }
                         }
