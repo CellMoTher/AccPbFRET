@@ -93,8 +93,8 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private final String lastModified = "24 May 2010";
     private final String imageJVersion = "1.42k";
     private final String javaVersion = "1.6.0_05";
-    private int windowWidth = 650;
-    private int windowHeight = 890;
+    private final int windowWidth = 650;
+    private final int windowHeight = 890;
     private ImagePlus donorBefore;
     private ImagePlus donorAfter;
     private ImagePlus acceptorBefore;
