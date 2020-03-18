@@ -90,7 +90,7 @@ import javax.swing.text.StyleContext;
 public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowListener {
 
     private final float version = 3.16F;
-    private final String lastModified = "24 May 2010";
+    private final String lastModified = "18 March 2020";
     private final String imageJVersion = "1.52p";
     private final String javaVersion = "1.8.0_202";
     private final int windowWidth = 650;
