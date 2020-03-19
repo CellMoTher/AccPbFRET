@@ -29,6 +29,7 @@ import ij.io.FileSaver;
 import ij.io.Opener;
 import ij.measure.Measurements;
 import ij.measure.ResultsTable;
+import ij.plugin.BrowserLauncher;
 import ij.plugin.HyperStackConverter;
 import ij.plugin.StackEditor;
 import ij.plugin.WindowOrganizer;
@@ -114,7 +115,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
     private AcceptorCTCorrDialog acceptorCTCorrDialog;
     private AcceptorPPCorrDialog acceptorPPCorrDialog;
     private JMenuBar menuBar;
-    private HelpWindow helpWindow;
     private JMenu fileMenu;
     private JMenu imageMenu;
     private JMenu correctionMenu;
@@ -2569,12 +2569,12 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     resetAll();
                     break;
                 case "help":
-                    if (helpWindow != null) {
-                        helpWindow.setVisible(false);
-                        helpWindow.dispose();
+                    try {
+                        String url = "https://imagej.net/AccPbFRET";
+                        BrowserLauncher.openURL(url);
+                    } catch (IOException ioe) {
+                        logError("Could not open https://imagej.net/AccPbFRET in browser.");
                     }
-                    helpWindow = new HelpWindow(this);
-                    helpWindow.setVisible(true);
                     break;
                 case "about":
                     JOptionPane optionPane = new JOptionPane();
@@ -2816,10 +2816,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             if (calculateImgRatioDialog != null) {
                 calculateImgRatioDialog.setVisible(false);
                 calculateImgRatioDialog.dispose();
-            }
-            if (helpWindow != null) {
-                helpWindow.setVisible(false);
-                helpWindow.dispose();
             }
             setVisible(false);
             dispose();
