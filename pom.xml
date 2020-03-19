@@ -18,7 +18,7 @@
 
     <name>AccPbFRET</name>
     <description>an ImageJ plugin for analysis of acceptor photobleaching FRET images.</description>
-    <url>https://biophys.med.unideb.hu/en/accpbfret/</url>
+    <url>https://imagej.net/AccPbFRET</url>
     <inceptionYear>2008</inceptionYear>
     <organization>
         <name>Department of Biophysics and Cell Biology, Faculty of Medicine, University of Debrecen</name>
