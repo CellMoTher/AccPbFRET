@@ -261,6 +261,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         donorCBefore = null;
                         return;
                     }
+                    accBlWindow.log("Set " + donorCBefore.getTitle() + " as donor before bleaching. (ct. corr.)");
                     donorCBefore.setTitle("Donor before bleaching (ct. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCBefore).convertToGray32();
                     setDonorBeforeButton.setBackground(accBlWindow.greenColor);
@@ -288,6 +289,7 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         acceptorCBefore = null;
                         return;
                     }
+                    accBlWindow.log("Set " + acceptorCBefore.getTitle() + " as acceptor before bleaching. (ct. corr.)");
                     acceptorCBefore.setTitle("Acceptor before bleaching (ct. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorCBefore).convertToGray32();
                     setAcceptorBeforeButton.setBackground(accBlWindow.greenColor);

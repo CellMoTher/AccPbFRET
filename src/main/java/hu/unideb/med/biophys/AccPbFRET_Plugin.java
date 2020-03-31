@@ -1281,6 +1281,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         return;
                     }
                     donorBefore = ip;
+                    log("Set " + donorBefore.getTitle() + " as donor before bleaching.");
                     donorBefore.setTitle("Donor before bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorBefore).convertToGray32();
                     if (automaticallyProcessedFiles == null) {
@@ -1324,6 +1325,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         return;
                     }
                     donorAfter = ip;
+                    log("Set " + donorAfter.getTitle() + " as donor after bleaching.");
                     donorAfter.setTitle("Donor after bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorAfter).convertToGray32();
                     setDonorAfterButton.setBackground(greenColor);
@@ -1355,6 +1357,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         setAcceptorBeforeButton.setBorderPainted(true);
                         return;
                     }
+                    log("Set " + acceptorBefore.getTitle() + " as acceptor before bleaching.");
                     acceptorBefore.setTitle("Acceptor before bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorBefore).convertToGray32();
                     acceptorBeforeSave = acceptorBefore.getProcessor().duplicate();
@@ -1386,6 +1389,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                         setAcceptorAfterButton.setBorderPainted(true);
                         return;
                     }
+                    log("Set " + acceptorAfter.getTitle() + " as acceptor after bleaching.");
                     acceptorAfter.setTitle("Acceptor after bleaching - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(acceptorAfter).convertToGray32();
                     acceptorAfterSave = acceptorAfter.getProcessor().duplicate();

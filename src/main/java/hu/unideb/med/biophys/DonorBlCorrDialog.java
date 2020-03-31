@@ -282,6 +282,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         donorCBefore = null;
                         return;
                     }
+                    accBlWindow.log("Set " + donorCBefore.getTitle() + " as donor before bleaching. (bl. corr.)");
                     donorCBefore.setTitle("Donor before bleaching (bl. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCBefore).convertToGray32();
                     setBeforeButton.setBackground(accBlWindow.greenColor);
@@ -309,6 +310,7 @@ public class DonorBlCorrDialog extends JDialog implements ActionListener {
                         donorCAfter = null;
                         return;
                     }
+                    accBlWindow.log("Set " + donorCAfter.getTitle() + " as donor after bleaching. (bl. corr.)");
                     donorCAfter.setTitle("Donor after bleaching (bl. corr.) - " + dateTimeFormat.format(OffsetDateTime.now()));
                     new ImageConverter(donorCAfter).convertToGray32();
                     setAfterButton.setBackground(accBlWindow.greenColor);
