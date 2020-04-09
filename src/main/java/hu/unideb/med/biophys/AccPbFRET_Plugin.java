@@ -2573,11 +2573,11 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     resetAll();
                     break;
                 case "help":
+                    String url = "https://imagej.net/AccPbFRET";
                     try {
-                        String url = "https://imagej.net/AccPbFRET";
                         BrowserLauncher.openURL(url);
                     } catch (IOException ioe) {
-                        logError("Could not open https://imagej.net/AccPbFRET in browser.");
+                        logError("Could not open " + url + " in browser.");
                     }
                     break;
                 case "about":
