@@ -1221,6 +1221,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
                         File imageFile = new File(path);
                         (new Opener()).open(imageFile.getAbsolutePath());
+                        log("Opened: " + path);
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "split"));
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "setAcceptorAfter"));
