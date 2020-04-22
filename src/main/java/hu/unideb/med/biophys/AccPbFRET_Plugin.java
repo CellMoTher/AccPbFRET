@@ -26,7 +26,9 @@ import ij.ImagePlus;
 import ij.WindowManager;
 import ij.gui.Roi;
 import ij.io.FileSaver;
+import ij.io.OpenDialog;
 import ij.io.Opener;
+import ij.io.SaveDialog;
 import ij.measure.Measurements;
 import ij.measure.ResultsTable;
 import ij.plugin.BrowserLauncher;
@@ -1180,29 +1182,20 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     break;
                 }
                 case "saveMessages": {
-                    JFileChooser jfc = new JFileChooser(currentDirectory);
-                    jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                    jfc.setDialogTitle("Save Messages...");
-                    jfc.showSaveDialog(this);
-                    if (jfc.getSelectedFile() == null) {
+                    SaveDialog sd = new SaveDialog("Save Messages", "Messages", ".txt");
+                    String directory = sd.getDirectory();
+                    String name = sd.getFileName();
+                    if (name == null) {
                         return;
                     }
-                    if (jfc.getSelectedFile().exists()) {
-                        currentDirectory = jfc.getCurrentDirectory().toString();
-                        int resp = JOptionPane.showConfirmDialog(this,
-                                "Overwrite existing file?", "Confirmation",
-                                JOptionPane.OK_CANCEL_OPTION,
-                                JOptionPane.QUESTION_MESSAGE);
-                        if (resp == JOptionPane.CANCEL_OPTION) {
-                            return;
-                        }
-                    }
+                    String path = directory + name;
                     try {
-                        try (BufferedWriter out = new BufferedWriter(new FileWriter(jfc.getSelectedFile().getAbsolutePath()))) {
+                        try (BufferedWriter out = new BufferedWriter(new FileWriter(path))) {
                             out.write(log.getText());
+                            log("Saved messages to: " + path);
                         }
                     } catch (IOException ioe) {
-                        logError("Could not save messages.");
+                        logError("Could not save messages to: " + path);
                     }
                     break;
                 }
@@ -1210,19 +1203,14 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     log.setText("");
                     break;
                 case "openImageStack": {
-                    JFileChooser jfc = new JFileChooser(currentDirectory);
-                    jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                    jfc.setDialogTitle("Open Image Stack...");
-                    jfc.showOpenDialog(this);
-                    if (jfc.getSelectedFile() == null) {
+                    OpenDialog od = new OpenDialog("Open Image Stack");
+                    String directory = od.getDirectory();
+                    String name = od.getFileName();
+                    if (name == null) {
                         return;
                     }
-                    if (!jfc.getSelectedFile().exists()) {
-                        logError("Selected file does not exist.");
-                        return;
-                    }
+                    String path = directory + name;
                     try {
-                        currentDirectory = jfc.getCurrentDirectory().toString();
                         boolean close = false;
                         boolean resultsWindow = false;
                         while (WindowManager.getCurrentImage() != null) {
@@ -1231,7 +1219,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
                         resetAllButtonColors();
 
-                        File imageFile = jfc.getSelectedFile();
+                        File imageFile = new File(path);
                         (new Opener()).open(imageFile.getAbsolutePath());
                         WindowManager.putBehind();
                         this.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "split"));
