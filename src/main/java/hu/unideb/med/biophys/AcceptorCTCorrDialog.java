@@ -462,7 +462,6 @@ public class AcceptorCTCorrDialog extends JDialog implements ActionListener {
                         }
                     }
                     break;
-
                 case "setfactor":
                     if (quotientsButton.isSelected()) {
                         if (mode1ResultLabel.getText().isEmpty()) {
