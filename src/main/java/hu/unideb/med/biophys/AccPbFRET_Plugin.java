@@ -1182,9 +1182,9 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     break;
                 }
                 case "saveMessages": {
-                    SaveDialog sd = new SaveDialog("Save Messages", "Messages", ".txt");
-                    String directory = sd.getDirectory();
-                    String name = sd.getFileName();
+                    SaveDialog svd = new SaveDialog("Save Messages", "Messages", ".txt");
+                    String directory = svd.getDirectory();
+                    String name = svd.getFileName();
                     if (name == null) {
                         return;
                     }
