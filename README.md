@@ -6,7 +6,7 @@ An [ImageJ](https://imagej.net/Welcome) plugin for analysis of acceptor photoble
 1. Download the latest version of [Fiji](https://fiji.sc/). 
 2. Enable the FRET Imaging [update site](https://imagej.net/How_to_follow_a_3rd_party_update_site).
 3. Once installed, go to _Plugins > FRET Imaging > AccPbFRET_.
-* ImageJ 1.x users can download the latest version of AccPbFRET from the releases page [here](https://github.com/camlloyd/AccPbFRET/releases).
+* ImageJ 1.x users can download the latest version of AccPbFRET from the releases page [here](https://github.com/CellMoTher/AccPbFRET/releases).
 
 ## Citation
 ***This software is based on a publication. If you use it in your work, please cite:***

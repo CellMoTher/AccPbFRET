@@ -1,5 +1,5 @@
 # AccPbFRET Changelog
-*This changelog only lists notable changes for the end user. For all changes, please see the commit history.*
+*This changelog only lists notable changes for the end user. For all changes, please see the [commit history](https://github.com/CellMoTher/AccPbFRET/commits/master).*
 
 ## 4.0.0-SNAPSHOT (Unreleased)
 
