@@ -92,8 +92,6 @@ import javax.swing.text.StyleContext;
 
 public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowListener {
 
-    private final String version = "4.0.0";
-    private final String lastModified = "18 March 2020";
     private final String fijiVersion = "2.0.0-rc-69";
     private final String imageJVersion = "1.52p";
     private final String javaVersion = "1.8.0_202";
@@ -213,7 +211,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
 
     public AccPbFRET_Plugin() {
         super();
-        setTitle("AccPbFRET v" + version + " - Acceptor Photobleaching FRET Imaging");
+        setTitle("AccPbFRET - Acceptor Photobleaching FRET Imaging");
         IJ.versionLessThan(imageJVersion);
         Locale.setDefault(Locale.ENGLISH);
         ToolTipManager.sharedInstance().setDismissDelay(10000);
@@ -2575,7 +2573,6 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             + "Homepage: https://imagej.net/AccPbFRET\n"
                             + "Written by: János Roszik (janosr@med.unideb.hu), János Szöllősi (szollo@med.unideb.hu),\n"
                             + "and György Vereb (vereb@med.unideb.hu)\n"
-                            + "Version: " + version + " (" + lastModified + ")\n"
                             + "Tested with (Fiji Is Just) ImageJ " + fijiVersion + "/" + imageJVersion + ";" + " Java " + javaVersion + ".\n"
                             + "If you are using the plugin, please cite the following paper:\n"
                             + "Roszik J, Szollosi J, Vereb G: AccPbFRET: an ImageJ plugin for semi-automatic, fully corrected \n"
