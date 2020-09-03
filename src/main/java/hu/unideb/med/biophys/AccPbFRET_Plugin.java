@@ -2504,26 +2504,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     }
                     break;
                 case "nextImage":
-                    if (transferImage != null) {
-                        transferImage.changes = false;
-                        transferImage.close();
-                    }
-                    if (donorBefore != null) {
-                        donorBefore.changes = false;
-                        donorBefore.close();
-                    }
-                    if (donorAfter != null) {
-                        donorAfter.changes = false;
-                        donorAfter.close();
-                    }
-                    if (acceptorBefore != null) {
-                        acceptorBefore.changes = false;
-                        acceptorBefore.close();
-                    }
-                    if (acceptorAfter != null) {
-                        acceptorAfter.changes = false;
-                        acceptorAfter.close();
-                    }
+                    closeImages();
                     if (!useAcceptorAsMask.isSelected()) {
                         IJ.selectWindow("Results");
                         WindowManager.putBehind();
@@ -2534,26 +2515,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     processFile(++currentlyProcessedFile);
                     break;
                 case "closeImages":
-                    if (transferImage != null) {
-                        transferImage.changes = false;
-                        transferImage.close();
-                    }
-                    if (donorBefore != null) {
-                        donorBefore.changes = false;
-                        donorBefore.close();
-                    }
-                    if (donorAfter != null) {
-                        donorAfter.changes = false;
-                        donorAfter.close();
-                    }
-                    if (acceptorBefore != null) {
-                        acceptorBefore.changes = false;
-                        acceptorBefore.close();
-                    }
-                    if (acceptorAfter != null) {
-                        acceptorAfter.changes = false;
-                        acceptorAfter.close();
-                    }
+                    closeImages();
                     resetAll();
                     break;
                 case "resetImages":
@@ -2586,6 +2548,29 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
             }
         } catch (HeadlessException | NumberFormatException t) {
             logException(t.toString(), t);
+        }
+    }
+
+    private void closeImages() {
+        if (transferImage != null) {
+            transferImage.changes = false;
+            transferImage.close();
+        }
+        if (donorBefore != null) {
+            donorBefore.changes = false;
+            donorBefore.close();
+        }
+        if (donorAfter != null) {
+            donorAfter.changes = false;
+            donorAfter.close();
+        }
+        if (acceptorBefore != null) {
+            acceptorBefore.changes = false;
+            acceptorBefore.close();
+        }
+        if (acceptorAfter != null) {
+            acceptorAfter.changes = false;
+            acceptorAfter.close();
         }
     }
 
