@@ -15,7 +15,7 @@
 
     <name>AccPbFRET</name>
     <description>an ImageJ plugin for analysis of acceptor photobleaching FRET images.</description>
-    <url>https://imagej.net/AccPbFRET</url>
+    <url>https://imagej.net/plugins/accpbfret</url>
     <inceptionYear>2008</inceptionYear>
     <organization>
         <name>Department of Biophysics and Cell Biology, Faculty of Medicine, University of Debrecen</name>
@@ -33,7 +33,7 @@
         <developer>
             <id>camlloyd</id>
             <name>Cameron Lloyd</name>
-            <url>https://imagej.net/User:Camlloyd</url>
+            <url>https://imagej.net/people/camlloyd</url>
             <roles>
                 <role>lead</role>
                 <role>developer</role>
