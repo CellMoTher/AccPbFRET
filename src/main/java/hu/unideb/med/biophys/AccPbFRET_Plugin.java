@@ -92,7 +92,7 @@ import javax.swing.text.StyleContext;
 
 public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowListener {
 
-    private final String imagejVersion = "2.0.0-rc-69";
+    private final String imagej2Version = "2.0.0-rc-69";
     private final String imagej1Version = "1.52p";
     private final String javaVersion = "1.8.0_202";
     private final int windowWidth = 650;
@@ -2535,7 +2535,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                             + "Homepage: https://imagej.net/AccPbFRET\n"
                             + "Written by: János Roszik (janosr@med.unideb.hu), János Szöllősi (szollo@med.unideb.hu),\n"
                             + "and György Vereb (vereb@med.unideb.hu)\n"
-                            + "Tested with: (Fiji Is Just) ImageJ " + imagejVersion + "/" + imagej1Version + ";" + " Java " + javaVersion + ".\n"
+                            + "Tested with: (Fiji Is Just) ImageJ " + imagej2Version + "/" + imagej1Version + ";" + " Java " + javaVersion + ".\n"
                             + "If you are using the plugin, please cite the following paper:\n"
                             + "Roszik J, Szollosi J, Vereb G: AccPbFRET: an ImageJ plugin for semi-automatic, fully corrected \n"
                             + "analysis of acceptor photobleaching FRET images. BMC Bioinformatics 2008, 9:346");
