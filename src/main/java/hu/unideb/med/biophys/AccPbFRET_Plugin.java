@@ -2522,7 +2522,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                     resetAll();
                     break;
                 case "help":
-                    String url = "https://imagej.net/AccPbFRET";
+                    String url = "https://imagej.net/plugins/accpbfret";
                     try {
                         BrowserLauncher.openURL(url);
                     } catch (IOException ioe) {
@@ -2532,7 +2532,7 @@ public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowLi
                 case "about":
                     JOptionPane optionPane = new JOptionPane();
                     optionPane.setMessage("AccPbFRET - an ImageJ plugin for analysis of acceptor photobleaching FRET images\n"
-                            + "Homepage: https://imagej.net/AccPbFRET\n"
+                            + "Homepage: https://imagej.net/plugins/accpbfret\n"
                             + "Written by: János Roszik (janosr@med.unideb.hu), János Szöllősi (szollo@med.unideb.hu),\n"
                             + "and György Vereb (vereb@med.unideb.hu)\n"
                             + "Tested with: (Fiji Is Just) ImageJ " + imagej2Version + "/" + imagejVersion + ";" + " Java " + javaVersion + ".\n"
