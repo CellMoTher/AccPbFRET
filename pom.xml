@@ -76,7 +76,7 @@
     </mailingLists>
 
     <scm>
-        <connection>scm:git:git://github.com/CellMoTher/AccPbFRET</connection>
+        <connection>scm:git:https://github.com/CellMoTher/AccPbFRET</connection>
         <developerConnection>scm:git:git@github.com:camlloyd/AccPbFRET</developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/CellMoTher/AccPbFRET</url>
