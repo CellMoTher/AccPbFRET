@@ -14,4 +14,4 @@ An [ImageJ](https://imagej.net/Welcome) plugin for analysis of acceptor photoble
 
 ## See also
 
-For time lapse and 3D imaging, we recommend our other FRET plugin [RiFRET](https://github.com/camlloyd/RiFRET). 
+For time lapse and 3D imaging, we recommend our other FRET plugin [RiFRET](https://github.com/CellMoTher/RiFRET). 
