@@ -1,7 +1,7 @@
 # AccPbFRET Changelog
 *This changelog only lists notable changes for the end user. For all changes, please see the [commit history](https://github.com/CellMoTher/AccPbFRET/commits/master).*
 
-## 4.0.0-SNAPSHOT (Unreleased)
+## 4.0.0
 
 ### New features
 * Save FRET images from the main window.
