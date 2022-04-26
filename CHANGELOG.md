@@ -4,7 +4,7 @@
 ## 4.0.0-SNAPSHOT (Unreleased)
 
 ### New features
-* Save transfer (FRET) images from the main window.
+* Save FRET images from the main window.
 * Copy region of interests (ROIs) in the correction factor calculation windows.
 
 ### Important changes
@@ -13,8 +13,8 @@
 * Background subtraction and Gaussian blurring steps have been reordered.
 * Spectrum LUT is no longer applied automatically.
 * AccPbFRET now uses Maven. The result is a single distributable JAR.
-* _Check for updates_ has been removed.
-* _Help_ now points to https://imagej.net/AccPbFRET.
+* _Check for updates_ has been removed in favor of the ImageJ updater.
+* _Help_ now points to https://imagej.net/plugins/accpbfret.
 
 #### Deprecation
 Old | New
