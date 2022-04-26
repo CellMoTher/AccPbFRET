@@ -1,3 +1,5 @@
+[![](https://github.com/CellMoTher/AccPbFRET/actions/workflows/build-main.yml/badge.svg)](https://github.com/CellMoTher/AccPbFRET/actions/workflows/build-main.yml)
+
 # AccPbFRET
 
 An [ImageJ](https://imagej.net/) plugin for analysis of acceptor photobleaching FRET images.
