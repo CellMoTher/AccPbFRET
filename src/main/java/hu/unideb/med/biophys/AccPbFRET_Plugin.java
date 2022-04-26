@@ -93,7 +93,7 @@ import javax.swing.text.StyleContext;
 public class AccPbFRET_Plugin extends JFrame implements ActionListener, WindowListener {
 
     private final String imagej2Version = "2.0.0-rc-69";
-    private final String imagejVersion = "1.52p";
+    private final String imagejVersion = "1.53f";
     private final String javaVersion = "1.8.0_202";
     private final int windowWidth = 650;
     private final int windowHeight = 890;
