@@ -2,7 +2,7 @@
  * #%L
  * an ImageJ plugin for analysis of acceptor photobleaching FRET images.
  * %%
- * Copyright (C) 2008 - 2020 AccPbFRET developers.
+ * Copyright (C) 2008 - 2022 AccPbFRET developers.
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
