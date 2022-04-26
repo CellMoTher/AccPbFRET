@@ -11,7 +11,7 @@
 
     <groupId>hu.unideb.med.biophys</groupId>
     <artifactId>AccPbFRET_</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0</version>
 
     <name>AccPbFRET</name>
     <description>an ImageJ plugin for analysis of acceptor photobleaching FRET images.</description>
@@ -78,7 +78,7 @@
     <scm>
         <connection>scm:git:https://github.com/CellMoTher/AccPbFRET</connection>
         <developerConnection>scm:git:git@github.com:CellMoTher/AccPbFRET</developerConnection>
-        <tag>HEAD</tag>
+        <tag>AccPbFRET_-4.0.0</tag>
         <url>https://github.com/CellMoTher/AccPbFRET</url>
     </scm>
     <issueManagement>
